@@ -1,0 +1,203 @@
+    // workout.number = 1,
+    // workout.category = "Medium",
+    // workout.type = "Body-Weight",
+    // workout.time = 900,
+    // workout.rounds = 3,
+    // workout.description = "Complete as many reps as you can in 1:00. There is no transition time built-in. All movements plus rest equals 1 round."
+    // workout.movements = [{
+    //   movement: "Burpees",
+    //   time: 60,
+    //   reps: "10",
+    //   video: "https://www.youtube.com/watch?v=auBLPXO8Fww&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=36"
+    // },
+    // {
+    //   movement: "Air Squats",
+    //   time: 60,
+    //   reps: "20",
+    //   video: "https://www.youtube.com/watch?v=rMvwVtlqjTE&list=PLdWvFCOAvyr0q99QIkLBq4tfYhTVbsBIs",
+    // },
+    // {
+    //   movement: "Sit-Ups",
+    //   time: 60,
+    //   reps: "30",
+    //   video: "https://www.youtube.com/watch?v=VIZX2Ru9qU8&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=37"
+    // },
+    // {
+    //   movement: "Plank",
+    //   time: 60,
+    //   reps: "Hold for the full 1:00 or as long as you can.",
+    //   video: "https://www.youtube.com/watch?v=EPiXN2bkLoQ&list=PLtzeqj0zQWd_QHAZbdKYqhYW4O3t16abN&index=95"
+    // },
+    // {
+    //   movement: "Rest",
+    //   time: 60
+    // }]
+
+    // workout.number = 2,
+    // workout.category = "Medium",
+    // workout.type = "Body-Weight",
+    // workout.time = 1080,
+    // workout.rounds = 6,
+    // workout.description = "Work for :30, rest for :30. All movements plus rest equals one round."
+    // workout.movements = [{
+    //   movement: "Walking Lunges",
+    //   time: 30,
+    //   reps: "As many reps as possible.",
+    //   video: "https://www.youtube.com/watch?v=auBLPXO8Fww&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=36",
+    //   description: "Can do walking lunges or lunges in place.",
+    // },
+    // {
+    //   movement: "Rest",
+    //   time: 30
+    // },
+    // {
+    //   movement: "Push-Ups",
+    //   time: 30,
+    //   reps: "As many reps as possible",
+    //   video: "https://www.youtube.com/watch?v=0pkjOk0EiAk&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=11",
+    // },
+    // {
+    //   movement: "Rest",
+    //   time: 30
+    // },    
+    // {
+    //   movement: "Box Jumps",
+    //   time: 30,
+    //   reps: "As many reps as possible",
+    //   video: "https://www.youtube.com/watch?v=NBY9-kTuHEk&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=44",
+    //   description: "Don't have something you can jump on? Substitution: jump as high as you can in place.",
+    // },
+    // {
+    //   movement: "Rest",
+    //   time: 30
+    // }]
+
+    // workout.number = 3,
+    // workout.category = "Medium",
+    // workout.type = "Body-Weight",
+    // workout.time = 1200,
+    // workout.rounds = 5,
+    // workout.description = "Complete as many reps as you can in 1:00. There is no transition time built-in. All movements plus rest equals 1 round."
+    // workout.movements = [{
+    //   movement: "Mountain Climbers",
+    //   time: 60,
+    //   reps: "As many reps as possible.",
+    //   video: "https://www.youtube.com/watch?v=bw4lYQ3P-xI&list=PLtzeqj0zQWd_QHAZbdKYqhYW4O3t16abN&index=50",
+    //   description: "Can do walking lunges or lunges in place.",
+    // },
+    // {
+    //   movement: "Box Steps",
+    //   time: 60,
+    //   reps: "As many reps as possible",
+    //   video: "https://www.youtube.com/watch?v=5qjqDHOUh-A&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=59",
+    // },   
+    // {
+    //   movement: "Burpees",
+    //   time: 60,
+    //   reps: "As many reps as possible",
+    //   video: "https://www.youtube.com/watch?v=auBLPXO8Fww&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=36",
+    //   description: "Don't have something you can jump on? Substitution: jump as high as you can in place.",
+    // },
+    // {
+    //   movement: "Rest",
+    //   time: 60
+    // }]
+
+    // workout.number = 1,
+    // workout.category = "Medium",
+    // workout.type = "BarBell",
+    // workout.time = 900,
+    // workout.rounds = 3,
+    // workout.description = "Complete your reps in the 1:00 window and rest the remainder of that minute. 3 rounds total."
+    // workout.movements = [{
+    //   movement: "Clean",
+    //   time: 60,
+    //   reps: "5",
+    //   video: "https://www.youtube.com/watch?v=Ty14ogq_Vok&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=26"
+    // },
+    // {
+    //   movement: "Push-Press",
+    //   time: 60,
+    //   reps: "6",
+    //   video: "https://www.youtube.com/watch?v=iaBVSJm78ko&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=14",
+    // },
+    // {
+    //   movement: "Deadlift",
+    //   time: 60,
+    //   reps: "8",
+    //   video: "https://www.youtube.com/watch?v=1ZXobu7JvvE&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=1"
+    // },
+    // {
+    //   movement: "Burpee",
+    //   time: 60,
+    //   reps: "10",
+    //   video: "https://www.youtube.com/watch?v=auBLPXO8Fww&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=36"
+    // },
+    // {
+    //   movement: "Rest",
+    //   time: 60
+    // }]
+
+    // workout.number = 2,
+    // workout.category = "Medium",
+    // workout.type = "BarBell",
+    // workout.time = 1080,
+    // workout.rounds = 6,
+    // workout.description = "Work for :45, rest for :15. After box jumps take extra 1:00 rest break.",
+    // workout.movements = [{
+    //   movement: "Snatch",
+    //   time: 45,
+    //   reps: "As many reps as possible",
+    //   video: "https://www.youtube.com/watch?v=Ty14ogq_Vok&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=26"
+    // },
+    // {
+    //   movement: "Rest",
+    //   time: 15
+    // },
+    // {
+    //   movement: "Box Jump",
+    //   time: 45,
+    //   reps: "As many reps as possible",
+    //   video: "https://www.youtube.com/watch?v=NBY9-kTuHEk&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=44",
+    //   description: "Don't have something you can jump on? Substitution: jump as high as you can in place."
+    // },
+    // {
+    //   movement: "Rest",
+    //   time: 75
+    // }]
+
+    // workout.number = 3,
+    // workout.category = "Medium",
+    // workout.type = "BarBell",
+    // workout.time = 1200,
+    // workout.rounds = 4,
+    // workout.description = "Complete as many reps as you can in 1:00. There is no transition time built-in. All movements plus rest equals 1 round.",
+    // workout.movements = [{
+    //   movement: "Box Step",
+    //   time: 60,
+    //   reps: "As many reps as possible",
+    //   video: "https://www.youtube.com/watch?v=5qjqDHOUh-A&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=59"
+    // },
+    // {
+    //   movement: "Jump Rope",
+    //   time: 60,
+    //   reps: "As many reps as possible",
+    //   video: "https://www.youtube.com/watch?v=h3mh7B4YHI4&list=PLtzeqj0zQWd_QHAZbdKYqhYW4O3t16abN&index=31",
+    //   description: "Don't have a jump rope? Substitution: hop in place."
+    // },
+    // {
+    //   movement: "Front Squat",
+    //   time: 60,
+    //   reps: "As many reps as possible",
+    //   video: "https://www.youtube.com/watch?v=uYumuL_G_V0&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=9"
+    // },
+    // {
+    //   movement: "Plank",
+    //   time: 60,
+    //   reps: "Hold as long as you can",
+    //   video: "https://www.youtube.com/watch?v=EPiXN2bkLoQ&list=PLtzeqj0zQWd_QHAZbdKYqhYW4O3t16abN&index=95",
+    // },
+    // {
+    //   movement: "Rest",
+    //   time: 60
+    // }]

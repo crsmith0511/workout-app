@@ -12,10 +12,9 @@ const WorkoutSchema = new Schema({
   movements: [{
     movement: String,
     time: Number,
-    reps: Number,
+    reps: String,
     video: String,
     description: String,
-    rest: Number,
   }]
 })
 
