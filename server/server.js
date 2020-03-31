@@ -13,10 +13,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-const mainRoutes = require('./routes/main')
+const mainRouter = require('./routes/main')
 
-app.use(mainRoutes)
+app.use(mainRouter)
 
-app.listen(8000, () => {
-  console.log('Listening on port ' + 8000)
+app.listen(5000, () => {
+  console.log('Listening on port ' + 5000)
 })
