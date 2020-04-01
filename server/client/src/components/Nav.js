@@ -28,14 +28,8 @@ const Nav = () => {
         <React.Fragment>
           <li></li>
           <li><Link to="/home"><FontAwesomeIcon icon={faCampground} /> Home</Link></li>
-          <li><Link to="/home"><FontAwesomeIcon icon={faCommentAlt}/> Pings</Link></li>
-          <li><Link to="/home"><FontAwesomeIcon icon={faInbox}/> Hey!</Link></li>
           <li><Link to="/home"><FontAwesomeIcon icon={faChartPie}/> Activity</Link></li>
-          <li><Link to="/home"><FontAwesomeIcon icon={faSmile}/> My Stuff</Link></li>
           <li onClick={handleLogoutClick}>Sign Out</li>
-          <li onClick={handleLogoutClick}>Sign Out</li>
-          
-
         </React.Fragment>
 
       );
@@ -51,19 +45,11 @@ const Nav = () => {
   );
 };
 
-// function mapStateToProps(state) {
-//     return {
-//       authenticated: state.auth.authenticated,
-//       email: state.auth.email
-//     };
-//   }
-  
-//   export default connect(mapStateToProps, actions)(Nav);
 export default Nav;
 
 
 const NavContainer = styled.div`
-  background-color: #f6f2ef;
+  background-color: #5e5c5a;
   display: block;
   color: #283c46
   margin: 0;

@@ -5,6 +5,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy
 const mongoose = require('mongoose')
 const bodyParser   = require('body-parser');
 const cookieSession = require('cookie-session')
+const Workout = require('../models/workout')
 const User = require('../models/user')
 
 router.use(bodyParser.json());
@@ -107,7 +108,6 @@ router.get('/make-workout', (req, res, next) => {
   
   // let workout = new Workout()
 
-
   // workout.save((err) => {
   //   if (err) throw err
   // })
@@ -120,7 +120,7 @@ const workoutCategory = req.query.category
 const workoutType = req.query.type
 const workoutNumber = parseInt(req.query.number)
 
-Workout.find({category:workoutCategory, type: workoutType, number: workoutNumber})
+Workout.find({category: workoutCategory, type: workoutType, number: workoutNumber})
 .exec((error, shortWorkout) => {
   if(error){
     res.next(err)

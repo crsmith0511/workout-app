@@ -6,12 +6,14 @@
     // workout.description = "Complete reps in 1:00 and rest the remainder. 1:00 Additional rest at the end of the round. All movements plus rest equals one round.",
     // workout.movements = [{
     //   movement: "Thrusters",
+    //   difficulty: "Hard",
     //   time: 60,
     //   reps: "6",
     //   video: "https://www.youtube.com/watch?v=L219ltL15zk&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=18"
     // },
     // {
     //   movement: "Box Jumps",
+    //   difficulty: "Medium",
     //   time: 60,
     //   reps: "8",
     //   video: "https://www.youtube.com/watch?v=NBY9-kTuHEk&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=44",
@@ -19,18 +21,21 @@
     // },
     // {
     //   movement: "Bent Over Rows",
+    //   difficulty: "Medium",
     //   time: 60,
     //   reps: "10",
     //   video: "https://www.youtube.com/watch?v=mTQ_qg37MJk&list=PLtzeqj0zQWd_QHAZbdKYqhYW4O3t16abN&index=29"
     // },
     // {
     //   movement: "Deadlifts",
+    //   difficulty: "Medium",
     //   time: 60,
     //   reps: "12",
     //   video: "https://www.youtube.com/watch?v=1ZXobu7JvvE&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=1",
     // },
     // {
     //   movement: "Rest",
+    //   difficulty: "Easy",
     //   time: 60
     // }]
 
@@ -42,16 +47,19 @@
     // workout.description = "Work :30, rest :30. Additional 1:00 of rest at the end of the round. All movements plus rest equals one round.",
     // workout.movements = [{
     //   movement: "Clean",
+    //   difficulty: "Hard",
     //   time: 30,
     //   reps: "As many reps as possible.",
     //   video: "https://www.youtube.com/watch?v=Ty14ogq_Vok&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=26"
     // },
     // {
     //   movement: "Rest",
+    //   difficulty: "Easy",
     //   time: 30,
     // },
     // {
     //   movement: "Jump Rope",
+    //   difficulty: "Easy",
     //   time: 30,
     //   reps: "As many reps as possible.",
     //   video: "https://www.youtube.com/watch?v=h3mh7B4YHI4&list=PLtzeqj0zQWd_QHAZbdKYqhYW4O3t16abN&index=31",
@@ -59,30 +67,62 @@
     // },
     // {
     //   movement: "Rest",
+    //   difficulty: "Easy",
     //   time: 30,
     // },
     // {
     //   movement: "Sumo Deadlift High Pulls",
+    //   difficulty: "Hard",
     //   time: 30,
     //   reps: "As many reps as possible.",
     //   video: "https://www.youtube.com/watch?v=gh55vVlwlQg&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=10"
     // },
     // {
     //   movement: "Rest",
+    //   difficulty: "Easy",
     //   time: 30,
     // },
     // {
     //   movement: "Push Press",
+    //   difficulty: "Medium",
     //   time: 30,
     //   reps: "As many reps as possible.",
     //   video: "https://www.youtube.com/watch?v=iaBVSJm78ko&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=14"
     // },
     // {
     //   movement: "Rest",
+    //   difficulty: "Easy",
     //   time: 90
     // }]
 
-        // workout.number = 1,
+    // workout.number = 3,
+    // workout.category = "Long",
+    // workout.type = "BarBell",
+    // workout.time = 1800,
+    // workout.rounds = 10,
+    // workout.description = "1:00 windwos with no transition time to the next movement. All the movements plus rest is one round.",
+    // workout.movements = [{
+    //   movement: "Snatches",
+    //   difficulty: "Hard",
+    //   time: 60,
+    //   reps: "As many reps as possible.",
+    //   video: "https://www.youtube.com/watch?v=Ty14ogq_Vok&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=26"
+    // },
+    // {
+    //   movement: "Burpees",
+    //   difficulty: "Medium",
+    //   time: 60,
+    //   reps: "As many reps as possible.",
+    //   video: "https://www.youtube.com/watch?v=auBLPXO8Fww&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=36"
+    // },
+    // {
+    //   movement: "Rest",
+    //   difficulty: "Easy",
+    //   time: 60
+    // }]
+
+
+    // workout.number = 1,
     // workout.category = "Long",
     // workout.type = "Body-Weight",
     // workout.time = 1800,
@@ -90,19 +130,22 @@
     // workout.description = "Complete as many reps as you can in 1:00. There is no transition time built-in. All movements plus rest equals 1 round.",
     // workout.movements = [{
     //   movement: "Walking Lunges",
+    //   difficulty: "Easy",
     //   time: 60,
     //   reps: "As many reps as possible",
     //   video: "https://www.youtube.com/watch?v=auBLPXO8Fww&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=36",
     //   description: "Can do walking lunges or lunges in place.",
     // },
     // {
-    // movement: "Burpee",
-    // time: 60,
-    // reps: "As many reps as possible.",
-    // video: "https://www.youtube.com/watch?v=auBLPXO8Fww&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=36"
+    //   movement: "Burpee",
+    //   difficulty: "Medium",
+    //   time: 60,
+    //   reps: "As many reps as possible.",
+    //   video: "https://www.youtube.com/watch?v=auBLPXO8Fww&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=36"
     // },
     // {
     //   movement: "Rest",
+    //   difficulty: "Easy",
     //   time: 60
     // }]
 
@@ -114,6 +157,7 @@
     // workout.description = "Complete your reps in the 1:00 window and rest the remainder of that minute. Additional 1:00 at the end of the round. All movements plus rest equals one round",
     // workout.movements = [{
     //   movement: "Air Squats",
+    //   difficulty: "Easy",
     //   time: 60,
     //   reps: "20",
     //   video: "https://www.youtube.com/watch?v=rMvwVtlqjTE&list=PLdWvFCOAvyr0q99QIkLBq4tfYhTVbsBIs",
@@ -121,18 +165,21 @@
     // },
     // {
     // movement: "Push-Ups",
+    // difficulty: "Hard",
     // time: 60,
     // reps: "10",
     // video: "https://www.youtube.com/watch?v=0pkjOk0EiAk&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=11"
     // },
     // {
     //   movement: "Sit-Ups",
+    //   difficulty: "Easy",
     //   time: 60,
     //   reps: "20",
     //   video: "https://www.youtube.com/watch?v=VIZX2Ru9qU8&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=37"
     // },
     // {
     //   movement: "Box Jumps",
+    //   difficulty: "Medium",
     //   time: 60,
     //   reps: "10",
     //   video: "https://www.youtube.com/watch?v=NBY9-kTuHEk&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=44",
@@ -140,41 +187,47 @@
     // },
     // {
     //   movement: "Rest",
+    //   difficulty: "Easy",
     //   time: 60
     // }]
 
-    workout.number = 3,
-    workout.category = "Long",
-    workout.type = "Body-Weight",
-    workout.time = 1500,
-    workout.rounds = 5,
-    workout.description = "Complete as many reps as you can in 1:00. There is no transition time built-in. All movements plus rest equals 1 round.",
-    workout.movements = [{
-      movement: "Box Steps",
-      time: 60,
-      reps: "As many reps as possible",
-      video: "https://www.youtube.com/watch?v=5qjqDHOUh-A&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=59",
-    },
-    {
-      movement: "Plank",
-      time: 60,
-      reps: "As many reps as possible.",
-      video: "https://www.youtube.com/watch?v=EPiXN2bkLoQ&list=PLtzeqj0zQWd_QHAZbdKYqhYW4O3t16abN&index=95"
-    },
-    {
-      movement: "Jump Rope",
-      time: 60,
-      reps: "As many reps as possible.",
-      video: "https://www.youtube.com/watch?v=h3mh7B4YHI4&list=PLtzeqj0zQWd_QHAZbdKYqhYW4O3t16abN&index=31",
-      description: "Don't have a jump rope? Substitution: hop in place.",
-    },
-    {
-      movement: "Mountain Climbers",
-      time: 60,
-      reps: "As many reps as possible.",
-      video: "https://www.youtube.com/watch?v=bw4lYQ3P-xI&list=PLtzeqj0zQWd_QHAZbdKYqhYW4O3t16abN&index=50"
-    },
-    {
-      movement: "Rest",
-      time: 60
-    }]
+    // workout.number = 3,
+    // workout.category = "Long",
+    // workout.type = "Body-Weight",
+    // workout.time = 1500,
+    // workout.rounds = 5,
+    // workout.description = "Complete as many reps as you can in 1:00. There is no transition time built-in. All movements plus rest equals 1 round.",
+    // workout.movements = [{
+    //   movement: "Box Steps",
+    //   difficulty: "Easy",
+    //   time: 60,
+    //   reps: "As many reps as possible",
+    //   video: "https://www.youtube.com/watch?v=5qjqDHOUh-A&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=59",
+    // },
+    // {
+    //   movement: "Plank",
+    //   difficulty: "Medium",
+    //   time: 60,
+    //   reps: "As many reps as possible.",
+    //   video: "https://www.youtube.com/watch?v=EPiXN2bkLoQ&list=PLtzeqj0zQWd_QHAZbdKYqhYW4O3t16abN&index=95"
+    // },
+    // {
+    //   movement: "Jump Rope",
+    //   difficulty: "Easy",
+    //   time: 60,
+    //   reps: "As many reps as possible.",
+    //   video: "https://www.youtube.com/watch?v=h3mh7B4YHI4&list=PLtzeqj0zQWd_QHAZbdKYqhYW4O3t16abN&index=31",
+    //   description: "Don't have a jump rope? Substitution: hop in place.",
+    // },
+    // {
+    //   movement: "Mountain Climbers",
+    //   difficulty: "Medium",
+    //   time: 60,
+    //   reps: "As many reps as possible.",
+    //   video: "https://www.youtube.com/watch?v=bw4lYQ3P-xI&list=PLtzeqj0zQWd_QHAZbdKYqhYW4O3t16abN&index=50"
+    // },
+    // {
+    //   movement: "Rest",
+    //   difficulty: "Easy",
+    //   time: 60
+    // }]

@@ -1,0 +1,23 @@
+
+
+
+
+.card {
+
+    text-align: center;
+    display: block;
+    width: 325px;
+    align-content: center;
+    margin-bottom: 0px;
+    border-radius: 0px
+
+}
+
+/* display: inline-block;
+    /* border-radius: 25px; */
+    /* text-align: center;
+    display: inline-block; */
+    /* height: 200px; */
+    /* width: 325px;
+    align-content: center; */
+    /* margin-bottom: 30px; */

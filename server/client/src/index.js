@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { render } from "react-dom";
@@ -9,7 +9,7 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers/index";
 import Home from './components/Home'
-// import Workout from './components/Workout'
+import Workout from './components/WorkoutPage'
 import LandingPage from "./components/LandingPage";
 
 const store = createStore(rootReducer, {}, applyMiddleware(thunk));
@@ -21,9 +21,9 @@ render(
         <Nav />
         <App>
           <Switch>
-            <Route exact path="/" component={LandingPage} />
+           <Route exact path="/" component={LandingPage} />
            <Route exact path="/home" component={Home} />
-             {/* <Route exact path="/workout/:id" component={Workout} /> */}
+           <Route exact path="/workout" component={Workout} />
           </Switch>
         </App>
       </Fragment>
