@@ -80,3 +80,81 @@ function mapStateToProps( state ) {
 
 
 export default connect(mapStateToProps, actions)(WorkoutPage);
+
+
+    // timer = () => {
+    //   let counter = setInterval(count(), 5000)
+    //   console.log(this.state.activeKey)
+    //   function count() {
+    //     console.log('made it to change keys')
+    //     let num = 2
+    //     let key = num.toString()
+
+    //     console.log(key)
+    //     console.log(this.state.activeKey)
+    //     this.setState({activeKey: num})
+    //     if(num < 6){
+    //             return num +1
+    //     }else{
+    //         return num = 1
+    //     }
+    //   }
+    // }
+
+
+    // changeKey = () => {
+    //   console.log('made it to change keys')
+    //   let num = 2
+    //   let key = num.toString()
+
+    //     console.log(key)
+    //     console.log(this.state.activeKey)
+    //   this.setState({activeKey: num})
+    //     if(num < 6){
+    //         return num +1
+    //     }else{
+    //        return num = 1
+    //     }
+
+    // }
+    
+
+        // onClick = () => {
+    //     console.log('clicked')
+    //     console.log(this.state.count)
+    //     console.log(this.props.workout.workout.length)
+    //       this.myInterval = setInterval(() => {
+    //         this.setState(prevState => ({
+    //             count: prevState.count +1
+    //           }))
+    //     }, 3000)
+    //   }
+    
+
+        // componentDidMount () {
+    //     // this.myInterval = setInterval(() => {
+    //     //     // console.log(this.state.count)
+    //     //     this.setState({
+    //     //         count: this.state.cout +1
+    //     //     })
+    //     // }, 3000)
+
+    // }
+
+    // onClick () {
+    //     this.myInterval = setInterval(() => {
+    //         // console.log(this.state.count)
+    //         this.setState({
+    //             count: this.state.cout +1
+    //         })
+    //     }, 3000)
+    // }
+
+//    componentDidMount () {
+//         const {startCount} = 60
+//        this.setState({
+//           count: startCount
+//         })
+//         // this.onClick()
+//       }
+    

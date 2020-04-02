@@ -11,7 +11,7 @@ const WorkoutSchema = new Schema({
   description: String,
   movements: [{
     movement: String,
-    index: Number,
+    index: String,
     difficulty: String,
     time: Number,
     reps: String,

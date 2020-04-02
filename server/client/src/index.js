@@ -9,6 +9,7 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers/index";
 import Home from './components/Home'
+import Preview from './components/PreviewWOD'
 import Workout from './components/WorkoutPage'
 import LandingPage from "./components/LandingPage";
 
@@ -23,6 +24,7 @@ render(
           <Switch>
            <Route exact path="/" component={LandingPage} />
            <Route exact path="/home" component={Home} />
+           <Route exact path="/preview" component={Preview} />
            <Route exact path="/workout" component={Workout} />
           </Switch>
         </App>

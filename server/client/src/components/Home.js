@@ -21,11 +21,9 @@ class Home extends Component {
           categorySelected: false,
           type: '',
           typeSelected: false,
-          isVisible: false
         }
         this.categoryClick = this.categoryClick.bind(this)
         this.typeClick = this.typeClick.bind(this)
-        this.showWorkoutButton = this.showWorkoutButton.bind(this)
         this.getWorkout = this.getWorkout.bind(this)
     }
 
@@ -48,24 +46,24 @@ class Home extends Component {
     this.renderStartWodButton()
   }
 
+  //get workout is on the start workout button which will appear when type and category has been clicked
   async getWorkout() { 
       this.setState({show: false})
       function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
       }
-      const workoutNumber = getRandomInt(1, 4)
+      const workoutNumber = getRandomInt(1, 3)
       this.props.fetchWOD(this.state.category, this.state.type, workoutNumber)
-      this.setState({category: '', categorySelected: false, type: '', typeSelected: false, show: false})
-      this.props.history.push('/workout');
+      this.setState({category: '', categorySelected: false, type: '', typeSelected: false, showWorkoutButton: false})
+      this.props.history.push('/preview');
   }
 
-  showWorkoutButton(){
-    this.setState({show: true})
-  }
-
-  renderStartWodButton(){
-      if(this.state.categorySelected === true && this.state.typeSelected){
-        this.showWorkoutButton()
+  renderStartWodButton = () => {
+    console.log(this.state.typeSelected, this.state.categorySelected)
+      if(this.state.categorySelected === true && this.state.typeSelected === true){
+        return(
+          <Button color="primary" onClick={this.getWorkout}>Create Workout</Button>
+        )
       }
     }
   
@@ -73,9 +71,9 @@ class Home extends Component {
   render() {
     return (
         <Container>
-        <Row style={{textAlign: "center"}}>
+        <Row style={{textAlign: "center", marginBottom: "10px"}}>
           <Col xs="12">
-            <Button onClick={this.getWorkout}>Start Workout</Button>
+            {this.renderStartWodButton()}
           </Col>
         </Row>
         <Row> 
@@ -85,13 +83,13 @@ class Home extends Component {
         </Row>
         <Row >
           <Col xsm="6">
-            <Card body style={{width: "100%", height:"10rem", marginBottom: "5px", marginTop: "5px"}} value="Body-Weight" onClick={() => this.typeClick("Body-Weight")} > 
+            <Card body style={{width: "100%", height:"10rem", marginBottom: "10px", marginTop: "5px"}} value="Body-Weight" onClick={() => this.typeClick("Body-Weight")} > 
               <CardTitle>BODY WEIGHT WORKOUT</CardTitle>
               <CardText>No weights. Minimial to no equipement.</CardText>
             </Card>
           </Col>
           <Col xsm="6">
-            <Card body style={{width: "100%", height:"10rem", marginBottom: "5px", marginTop: "5px"}} onClick={() => this.typeClick("BarBell")}>
+            <Card body style={{width: "100%", height:"10rem", marginBottom: "10px", marginTop: "5px"}} onClick={() => this.typeClick("BarBell")}>
               <CardTitle>BARBELL WORKOUT</CardTitle>
               <CardText>Weighted workout with a barbell.</CardText>
             </Card>

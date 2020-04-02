@@ -1,9 +1,9 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import * as actions from '../actions';
+// import * as actions from '../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCampground, faCommentAlt, faInbox, faChartPie, faSmile} from "@fortawesome/free-solid-svg-icons";
+import { faHome, faChartPie} from "@fortawesome/free-solid-svg-icons";
 
 import './Nav.css';
 
@@ -27,7 +27,7 @@ const Nav = () => {
       return (
         <React.Fragment>
           <li></li>
-          <li><Link to="/home"><FontAwesomeIcon icon={faCampground} /> Home</Link></li>
+          <li><Link to="/home"><FontAwesomeIcon icon={faHome} /> Home</Link></li>
           <li><Link to="/home"><FontAwesomeIcon icon={faChartPie}/> Activity</Link></li>
           <li onClick={handleLogoutClick}>Sign Out</li>
         </React.Fragment>
