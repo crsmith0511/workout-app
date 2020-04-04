@@ -29,7 +29,7 @@ class PreviewWOD extends Component {
     renderList = () => {
 
         if(this.props.workout.workout.length === 0){
-            return <div>Loading...</div>; 
+            return <div></div>; 
         }
         console.log('this is length', this.props.workout.workout[0].movements.length)
         const movements = this.props.workout.workout[0].movements
@@ -75,7 +75,7 @@ class PreviewWOD extends Component {
                     <Card.Body>
                         <Row>
                           <Col xs="12">
-                          <iframe width="250" height="200" src={movement.video} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="250" height="200" src={movement.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                           <p>{movement.description}</p>
                           </Col>
                         </Row>

@@ -8,8 +8,12 @@ import Timer from 'react-compound-timer'
 import './wod.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRss, faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
+import SpotifyWebApi from 'spotify-web-api-js';
+const spotifyApi = new SpotifyWebApi();
 
-
+// const Spotify = require('spotify-web-api-js');
+// const spotifyWebAPI = new Spotify();
+const token = spotifyApi.setAccessToken('BQCyj2sTaPUx4mAz7LdACCd-M6n7tu6scpSjA53xjqMwe0CK4jhrWuKEFCbe0CZD5tg9DdFpYY0c4dsPhQ_bapLusvrBpp5urEXayTpx_eIAUoo3zfbacbTfUEsyH2lXz4hZUbKmJUmq1sLPz3hGwy30-M3ovuUWNhw');
 
 class WorkoutPage extends Component {
     constructor(props) {
@@ -21,25 +25,32 @@ class WorkoutPage extends Component {
             countDown: 10,
             minutes: 0,
             seconds: 0,
-            movementTimer: 0
+            movementTimer: 0,
+            token: token,
+            nowPlayingTitle: 'Currently Paused' 
+            // albumArt: ''
         }
-        this.playWODAndMusic = this.playWODAndMusic.bind(this)
+        // this.movementTracker = this.movementTracker.bind(this)
         this.timer = this.timer.bind(this)
         this.handleShow = this.handleShow.bind(this)
         this.handleClose = this.handleClose.bind(this)
         this.countDown = this.countDown.bind(this)
+        // this.getNowPlaying = this.getNowPlaying.bind(this)
     }
+
+ 
 
     componentDidMount(){
         this.handleShow()
         this.countDown()
         this.setState({movementTimer: this.props.workout.workout[0].movements[0].time})
         this.setState({minutes: this.props.workout.workout[0].time / 60})
+        // this.getNowPlaying()
     }
 
     countDown = () => {
         this.myCountDownInterval = setInterval(() => {
-            console.log(this.state.count)
+            // console.log(this.state.count)
             if(this.state.countDown > 0){
                 this.setState({
                     countDown: this.state.countDown -1
@@ -48,7 +59,8 @@ class WorkoutPage extends Component {
                 this.stopCountDown()
                 this.timer()
                 this.handleClose()
-                this.playWODAndMusic()
+                // this.movementTracker()
+                // this.getNowPlaying()
             }
         }, 1000)
     }
@@ -57,51 +69,50 @@ class WorkoutPage extends Component {
         clearInterval(this.myCountDownInterval)
     }
 
-    playWODAndMusic = () => {
-    console.log('clicked')
-    console.log(this.state.movementKeyCount)
-
-        this.myInterval = setInterval(() => {
+   async movementTracker () {
+        // this.myInterval = setInterval(() => {
+            console.log('state from play wod and music', this.state)
             if(this.state.movementKeyCount < this.props.workout.workout[0].movements.length){
-            this.setState(prevState => ({
-                movementKeyCount: prevState.movementKeyCount +1
+               await this.setState(prevState => ({
+                    movementKeyCount: prevState.movementKeyCount +1
                 }))
             }else{
                 if(this.state.round < this.props.workout.workout[0].rounds){              
-                    this.setState(prevState => ({
+                  await this.setState(prevState => ({
                         movementKeyCount: 1,
                         round: prevState.round +1
                     }))
                 }else{
-                    this.setState({
+                  await this.setState({
                         movementKeyCount: 1,
                         round: "DONE"
                     })
-                    this.wodIsCompleted()
+                    // this.wodIsCompleted()
                 }
             }
-        }, this.state.movementTimer *1001)
+        // }, this.state.movementTimer * 1000)
     }
 
     timer = () => {
-        this.timerInterval = setInterval(() => {
-            console.log('movementTimer', this.state.movementTimer)
-            console.log('movement key', this.state.movementKeyCount)
-            console.log('next timer', this.props.workout.workout[0].movements[this.state.movementKeyCount].time)
+
+       this.timerInterval = setInterval(() => {
             const { seconds, minutes } = this.state
             const{movementTimer} = this.state
-
-            if(movementTimer > 0){
-                this.setState(prevState => ({
-                    movementTimer: prevState.movementTimer  -1
-                    }))
-             }
-            if(movementTimer === 0){            
-                this.setState({
-                    movemenTimer: this.props.workout.workout[0].movements[this.state.movementKeyCount].time
+            console.log('state tracked in timer', this.state)
+            // console.log('movementKeyCount', this.state.movementKeyCount)
+            // console.log('movementTimer', movementTimer)
+            // console.log("next movement", this.props.workout.workout[0].movements[this.state.movementKeyCount])
+            // console.log("next timer", this.props.workout.workout[0].movements[this.state.movementKeyCount].time)
+            if(movementTimer === 0){         
+              this.setState({
+                    movementTimer: this.props.workout.workout[0].movements[this.state.movementKeyCount -1].time
                 })
+                this.movementTracker()
+            }else{
+               this.setState(prevState => ({
+                    movementTimer: prevState.movementTimer  -1
+                }))
             }
-
             if (seconds > 0) {
                 this.setState(({ seconds }) => ({
                     seconds: seconds - 1
@@ -117,24 +128,27 @@ class WorkoutPage extends Component {
                     }))
                 }
             } 
-        }, 1000)
+        }, 1002)
     }
 
-    wodIsCompleted = () => {
-        clearInterval(this.myInterval)
-    }
+    // wodIsCompleted = () => {
+    //     clearInterval(this.myInterval)
+    // }
     stopTimer = () => {
         clearInterval(this.timerInterval)
     }
 
-    resume = () =>{
+    resume = () => {
+        console.log('resume clicked')
+        console.log('resume state', this.state)
         this.timer()
-        this.playWODAndMusic()
+        // this.movementTracker()
     }
 
     pause = () => {
         console.log("pause clicked")
-        this.wodIsCompleted()
+        console.log('pause state', this.state)
+        // this.wodIsCompleted()
         this.stopTimer()
     }
 
@@ -146,6 +160,24 @@ class WorkoutPage extends Component {
         this.setState({show: true})
     } 
 
+    // getCurrentlyPlaying(token) {
+    //     // Make a call using the token
+    //     $.ajax({
+    //       url: "https://api.spotify.com/v1/me/player",
+    //       type: "GET",
+    //       beforeSend: xhr => {
+    //         xhr.setRequestHeader("Authorization", "Bearer " + token);
+    //       },
+    //       success: data => {
+    //         this.setState({
+    //         //   item: data.item,
+    //           nowPlayingTitle: data.is_playing,
+    //         //   progress_ms: data.progress_ms
+    //         });
+    //       }
+    //     });
+    //   }
+
     renderHeader(){
         const { minutes, seconds } = this.state
         if(this.props.workout.workout.length === 0){
@@ -155,16 +187,16 @@ class WorkoutPage extends Component {
         }
         return(
             <Card style={{width: "100%"}}>
-            <Card.Header as="h5">
+            <Card.Header as="h5" >
                 <Row>
-                    <Col xs="3" style={{textAligh: "legt"}}>
+                    <Col xs="3" style={{textAlign: "left"}}>
                         <h4> { minutes === 0 && seconds === 0? <h1>Busted!</h1>: <h1>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1>}</h4>
                     </Col>
-                    <Col xs="3" style={{textAligh: "center"}}>
-                        <FontAwesomeIcon style={{marginLeft: "2px", marginRight: "5px"}} onClick={this.resume} icon={faPlay}/> 
-                        <FontAwesomeIcon style={{marginLeft: "5px", marginRight: "1px"}} onClick={this.pause} icon={faPause}/> 
+                    <Col xs="6" style={{textAlign: "center"}}>
+                        <FontAwesomeIcon style={{marginLeft: "5px", marginRight: "15px", marginTop: "10px"}} onClick={this.resume} icon={faPlay }/> 
+                        <FontAwesomeIcon style={{marginLeft: "10px", marginRight: "10px", marginTop: "10px"}} onClick={this.pause} icon={faPause} /> 
                     </Col>
-                    <Col xs="3" style={{textAligh: "legt"}}>
+                    <Col xs="3" style={{textAlign: "right", marginTop: "12px"}}>
                         <h4>Round: {this.state.round}</h4>
                     </Col>
                 </Row>
@@ -172,12 +204,12 @@ class WorkoutPage extends Component {
             <Card.Body style={{height: "3rem"}}>
                 <Card.Title>
                     <Row>
-                        <Col xs="2">
+                    <Col xs="2">
                             <FontAwesomeIcon icon={faRss}/> 
                         </Col>
                         <Col xs="10">
-                            NOW PLAYING: "BLAH BLAH BLAH"
-                        </Col>
+                            NOW PLAYING: 
+                        </Col> 
                     </Row>
                 </Card.Title>
             </Card.Body>
@@ -190,9 +222,9 @@ class WorkoutPage extends Component {
         if(this.props.workout.workout.length === 0){
             return <div>Loading...</div>; 
         }
-        console.log('this is length', this.props.workout.workout[0].movements.length)
+        // console.log('this is length', this.props.workout.workout[0].movements.length)
         const movements = this.props.workout.workout[0].movements
-        console.log('waiting for workout', movements)
+        // console.log('waiting for workout', movements)
         return _.map(movements, movement => {
             if(movement.movement === "Rest"){
               return(
@@ -234,7 +266,7 @@ class WorkoutPage extends Component {
                     <Card.Body>
                         <Row>
                           <Col xs="12">
-                          <iframe width="250" height="200" src={movement.video} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                          <iframe width="250" height="200" src={movement.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                           </Col>
                         </Row>
 
@@ -247,22 +279,30 @@ class WorkoutPage extends Component {
 
 
     renderModal (){
-        return (
+        if(this.state.show === true){
+            return (
             <>
-              <Button style={{height:".05px", width: ".05px"}}  onClick={this.handleShow}>
-                Launch demo modal
-              </Button>
-          
-              <Modal show={this.state.show} onHide={this.handleClose}>
-                <Modal.Header>
-                  <Modal.Title style={{textAlign: "center"}}>YOUR WORKOUT STARTS IN</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                   <h1>{this.state.countDown}</h1>
-                </Modal.Body>
-              </Modal>
-            </>
-          );
+            <Button style={{height:".05px", width: ".05px"}}  onClick={this.handleShow}>
+              Launch demo modal
+            </Button>
+        
+            <Modal show={this.state.show} onHide={this.handleClose}>
+              <Modal.Header>
+                <Modal.Title><h1 style={{textAlign: "center"}}>YOUR WORKOUT STARTS IN</h1></Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                 <h1 style={{textAlign: "center"}}>{this.state.countDown}</h1>
+              </Modal.Body>
+            </Modal>
+          </>
+        );
+        }else{
+            return (
+                <div></div>
+            )
+        }
+        
+
     }
     
     

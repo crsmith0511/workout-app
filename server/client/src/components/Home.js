@@ -3,12 +3,11 @@ import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
-import { fetchWOD } from '../actions/index';
+import { fetchWOD, fetchUser } from '../actions/index';
 import _ from "lodash";
 import { Container, Card, Button, CardTitle, CardText, Row, Col, Modal } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../index.css';
-// import Nav from './Nav';
 
 
 
@@ -21,28 +20,28 @@ class Home extends Component {
           categorySelected: false,
           type: '',
           typeSelected: false,
+          bodyWeightSelected: false,
+          barBellSelected: false,
+          shortSelected: false,
+          mediumSelected: false,
+          longSelected: false,
         }
         this.categoryClick = this.categoryClick.bind(this)
         this.typeClick = this.typeClick.bind(this)
         this.getWorkout = this.getWorkout.bind(this)
     }
 
-//    componentDidMount() { 
-//     //  this.props.fetchUser()
-//    }
+componentDidMount(){
+  this.props.fetchUser()
+}
 
   async categoryClick(event) {
-    console.log('clicked?')
-    console.log(event)
     await this.setState({ category: event, categorySelected: true });
-    console.log('category state: ', this.state.category)
     this.renderStartWodButton()
   }
 
   async typeClick(event) {
-    console.log(event)
     await this.setState({ type: event, typeSelected: true });
-    console.log('type state: ', this.state.type)
     this.renderStartWodButton()
   }
 
@@ -59,7 +58,6 @@ class Home extends Component {
   }
 
   renderStartWodButton = () => {
-    console.log(this.state.typeSelected, this.state.categorySelected)
       if(this.state.categorySelected === true && this.state.typeSelected === true){
         return(
           <Button color="primary" onClick={this.getWorkout}>Create Workout</Button>
@@ -69,6 +67,7 @@ class Home extends Component {
   
 
   render() {
+    const {bodyWeightSelected} = this.state.bodyWeightSelected
     return (
         <Container>
         <Row style={{textAlign: "center", marginBottom: "10px"}}>
@@ -83,7 +82,10 @@ class Home extends Component {
         </Row>
         <Row >
           <Col xsm="6">
-            <Card body style={{width: "100%", height:"10rem", marginBottom: "10px", marginTop: "5px"}} value="Body-Weight" onClick={() => this.typeClick("Body-Weight")} > 
+            <Card body 
+            style={{width: "100%", height:"10rem", marginBottom: "10px", marginTop: "5px"}} 
+            onClick={() => this.typeClick("Body-Weight")}
+            > 
               <CardTitle>BODY WEIGHT WORKOUT</CardTitle>
               <CardText>No weights. Minimial to no equipement.</CardText>
             </Card>
@@ -122,7 +124,6 @@ class Home extends Component {
 
 function mapStateToProps(state) {
   return ({
-    homePage: state.home,
     user: state.user
   })
 }

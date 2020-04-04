@@ -4,7 +4,8 @@ import * as actions from '../actions';
 import _ from "lodash";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../index.css';
-import GoogleLoginButton from './GoogleLoginButton';
+// import GoogleLoginButton from './GoogleLoginButton';
+import Login from './spotifyLoginPage'
 
 class LandingPage extends Component {
 
@@ -18,7 +19,8 @@ class LandingPage extends Component {
             <div className="col-md-8-offset-3 text-center">
               <div className="card col-md-offset-3 text-center" styles="width: 18rem;">
                 <div className="card-body">
-                  <GoogleLoginButton />
+                  {/* <GoogleLoginButton /> */}
+                  <Login />
                 </div>
               </div>
             </div>

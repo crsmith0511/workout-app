@@ -2,10 +2,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  googleId: String,
   name: String,
   email: String,
-  avatar: String,
+  userId: String,
+  img: [],
+  userURI: String,
+  accessToken: String,
+  refreshToken: String,
+  tokenExpirationTime: { type: Date, default: Date.now },
   workouts: [{ type: Schema.Types.ObjectId, ref: "workouts" }],
 
 });
