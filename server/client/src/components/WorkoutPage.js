@@ -4,32 +4,32 @@ import * as actions from '../actions';
 import _ from "lodash";
 import { Container, Row, Col } from 'reactstrap';
 import {Accordion, Card, Button, Modal} from 'react-bootstrap'
-import Timer from 'react-compound-timer'
+// import Timer from 'react-compound-timer'
 import './wod.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRss, faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 import SpotifyWebApi from 'spotify-web-api-js';
 const spotifyApi = new SpotifyWebApi();
 
-// const Spotify = require('spotify-web-api-js');
-// const spotifyWebAPI = new Spotify();
-const token = spotifyApi.setAccessToken('BQCyj2sTaPUx4mAz7LdACCd-M6n7tu6scpSjA53xjqMwe0CK4jhrWuKEFCbe0CZD5tg9DdFpYY0c4dsPhQ_bapLusvrBpp5urEXayTpx_eIAUoo3zfbacbTfUEsyH2lXz4hZUbKmJUmq1sLPz3hGwy30-M3ovuUWNhw');
-
 class WorkoutPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             movementKeyCount: 1,
-            round: 1,
+            round: 1, 
             show : false,
             countDown: 10,
             minutes: 0,
             seconds: 0,
             movementTimer: 0,
-            token: token,
-            nowPlayingTitle: 'Currently Paused' 
-            // albumArt: ''
-        }
+            token: '',
+            loggedIn: '',
+            nowPlaying: {
+                nowPlayingTitle: 'Currently Paused' , 
+                deviceId: ''
+                // albumArt: ""
+            }
+        };
         // this.movementTracker = this.movementTracker.bind(this)
         this.timer = this.timer.bind(this)
         this.handleShow = this.handleShow.bind(this)
@@ -38,13 +38,12 @@ class WorkoutPage extends Component {
         // this.getNowPlaying = this.getNowPlaying.bind(this)
     }
 
- 
-
-    componentDidMount(){
-        this.handleShow()
-        this.countDown()
-        this.setState({movementTimer: this.props.workout.workout[0].movements[0].time})
-        this.setState({minutes: this.props.workout.workout[0].time / 60})
+    async componentDidMount(){
+        await this.setState({token: this.props.user[0].accessToken})
+        // this.handleShow()
+        // this.countDown()
+        await this.setState({movementTimer: this.props.workout.workout[0].movements[0].time})
+        await this.setState({minutes: this.props.workout.workout[0].time / 60})
         // this.getNowPlaying()
     }
 
@@ -96,6 +95,7 @@ class WorkoutPage extends Component {
     timer = () => {
 
        this.timerInterval = setInterval(() => {
+        //    this.getNowPlaying()
             const { seconds, minutes } = this.state
             const{movementTimer} = this.state
             console.log('state tracked in timer', this.state)
@@ -142,6 +142,7 @@ class WorkoutPage extends Component {
         console.log('resume clicked')
         console.log('resume state', this.state)
         this.timer()
+        this.playMusic()
         // this.movementTracker()
     }
 
@@ -150,6 +151,7 @@ class WorkoutPage extends Component {
         console.log('pause state', this.state)
         // this.wodIsCompleted()
         this.stopTimer()
+        this.pauseMusic()
     }
 
     handleClose = () => {
@@ -160,23 +162,59 @@ class WorkoutPage extends Component {
         this.setState({show: true})
     } 
 
-    // getCurrentlyPlaying(token) {
-    //     // Make a call using the token
-    //     $.ajax({
-    //       url: "https://api.spotify.com/v1/me/player",
-    //       type: "GET",
-    //       beforeSend: xhr => {
-    //         xhr.setRequestHeader("Authorization", "Bearer " + token);
-    //       },
-    //       success: data => {
-    //         this.setState({
-    //         //   item: data.item,
-    //           nowPlayingTitle: data.is_playing,
-    //         //   progress_ms: data.progress_ms
-    //         });
-    //       }
-    //     });
-    //   }
+
+
+
+//    getNowPlaying = () => {
+//         fetch('https://api.spotify.com/v1/me/player', {
+//             headers:{'Authorization': 'Bearer ' + this.state.token}
+//             }).then(response => response.json())
+//             .then((data) => {
+//                 // console.log('player data ', data)
+//                this.setState({
+//                     nowPlaying: { 
+//                         nowPlayingTitle: data.item.name,
+//                         deviceId: data.device.id 
+//                         // albumArt: data.item.album.images[0].url
+//                       }
+//                 });
+//             })
+//     }
+
+    //  "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer BQA1af2HbmkKjjXqPzIobnyAghU7U3poYxOCI4LtYZ7oF_Bk3Ub6EwxFBAhTpSXYVNhjlFSNGfAoexZN7LKVMDLGBgsiDMTq8g5IOJLJ0_6zbTgxzqA_eWiVge5lbbyiTugv7xef55eSAdCkYgojrTbIf3bGtp-ZgBxi5w"
+
+    playMusic = () =>{
+
+        fetch("https://api.spotify.com/v1/me/player/play?device_id=46774e015437f413e0c92f34d8b3d30b2334ea74", {
+            method: "PUT",
+            // body: {
+            //     "context_uri": "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
+            //     "offset": {
+            //       "position": 5
+            //     },
+            //     "position_ms": 0
+            //   },
+            headers: {
+                "Accept": "application/json",
+                "Authorization": "Bearer BQAmkydnsrosUNVR-7DB0o8XkHv0zzFZO2ohSrYzN1nogNr7oXTNqlwTuvWnRqmU8wexaBsK5vYRvMnzlJmGLH9rSvlcREP_iMCDJ0HKDh7Jvs7FxpkKrDfbqjD_nCNY3_leZ2K9-WEUScB0HTEg_Pl6aBBQetpLt2TwGUTPdKoPgQ",
+                "Content-Type": "application/json"
+            }
+        })
+    }
+
+    pauseMusic = () =>{
+
+        fetch('https://api.spotify.com/v1/me/player/pause', {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer BQAmkydnsrosUNVR-7DB0o8XkHv0zzFZO2ohSrYzN1nogNr7oXTNqlwTuvWnRqmU8wexaBsK5vYRvMnzlJmGLH9rSvlcREP_iMCDJ0HKDh7Jvs7FxpkKrDfbqjD_nCNY3_leZ2K9-WEUScB0HTEg_Pl6aBBQetpLt2TwGUTPdKoPgQ",
+            }
+        })
+    }
+
+
+
 
     renderHeader(){
         const { minutes, seconds } = this.state
@@ -208,7 +246,7 @@ class WorkoutPage extends Component {
                             <FontAwesomeIcon icon={faRss}/> 
                         </Col>
                         <Col xs="10">
-                            NOW PLAYING: 
+                            NOW PLAYING: {this.state.nowPlaying.nowPlayingTitle}
                         </Col> 
                     </Row>
                 </Card.Title>
@@ -333,9 +371,10 @@ class WorkoutPage extends Component {
 }
 
 function mapStateToProps( state ) {
-    console.log(state)
+    console.log('state in workout', state)
   return{
-	workout: state
+    workout: state,
+    user: state.user
   } 
 }
 

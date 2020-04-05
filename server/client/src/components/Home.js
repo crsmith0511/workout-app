@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Redirect, Link } from "react-router-dom";
+// import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import * as actions from '../actions';
+// import * as actions from '../actions';
 import { fetchWOD, fetchUser } from '../actions/index';
 import _ from "lodash";
 import { Container, Card, Button, CardTitle, CardText, Row, Col, Modal } from 'reactstrap';
@@ -31,10 +31,9 @@ class Home extends Component {
         this.getWorkout = this.getWorkout.bind(this)
     }
 
-componentDidMount(){
-  this.props.fetchUser()
-}
-
+  componentDidMount = () => {
+    this.props.fetchUser()
+  }  
   async categoryClick(event) {
     await this.setState({ category: event, categorySelected: true });
     this.renderStartWodButton()
@@ -123,13 +122,14 @@ componentDidMount(){
 }
 
 function mapStateToProps(state) {
+  console.log('Home page state: ', state)
   return ({
     user: state.user
   })
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchWOD }, dispatch);
+  return bindActionCreators({ fetchWOD, fetchUser }, dispatch);
 }
 
 export default connect(

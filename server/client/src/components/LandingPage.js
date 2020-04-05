@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from '../actions';
-import _ from "lodash";
+// import _ from "lodash";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../index.css';
 // import GoogleLoginButton from './GoogleLoginButton';
@@ -11,7 +10,6 @@ class LandingPage extends Component {
 
   renderPage = () => {
     console.log('props auth from landing page: ', this.props.auth)
-
     return (
       <React.Fragment>
         <div className="home-page">
@@ -38,8 +36,12 @@ class LandingPage extends Component {
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps(state) {
+  return ({
+    user: state.user
+  })
 }
 
-export default connect(mapStateToProps, actions)(LandingPage);
+export default connect(
+  mapStateToProps,
+)(LandingPage);

@@ -4,8 +4,9 @@ import { FETCH_USER, FETCH_WOD, NOT_AUTH_USER} from './types';
 const ROOT_URL = 'http://localhost:5000'
 
 export const fetchUser = () => dispatch => {
+  console.log('fetch user in action')
 
-    axios.get(`${ROOT_URL}/current_user`
+    axios.get(`${ROOT_URL}/auth/spotify/current_user`
   
     ).then(function (response) {
       console.log("current user responded", response)

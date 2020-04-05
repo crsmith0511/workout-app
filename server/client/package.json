@@ -24,6 +24,7 @@
     "react-calendar": "^3.0.0",
     "react-compound-timer": "^1.2.0",
     "react-dom": "^16.13.1",
+    "react-load-script": "0.0.6",
     "react-modal": "^3.11.2",
     "react-redux": "^6.0.0",
     "react-router": "^5.1.2",

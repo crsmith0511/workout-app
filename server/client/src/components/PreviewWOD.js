@@ -108,7 +108,7 @@ class PreviewWOD extends Component {
 }
 
 function mapStateToProps( state ) {
-    console.log(state)
+    console.log('preview state', state)
   return{
 	workout: state
   } 
