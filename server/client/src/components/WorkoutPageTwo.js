@@ -10,107 +10,121 @@
 // // import SpotifyWebApi from 'spotify-web-api-js';
 // // const spotifyApi = new SpotifyWebApi();
 
-// class WorkoutPage extends Component {
+// class WorkoutPageTwo extends Component {
 //     constructor(props) {
 //         super(props);
 //         this.state = {
 //             movementKeyCount: 1,
 //             round: 1, 
 //             show : false,
-//             countDown: 10,
+//             countDownTime: 10,
 //             minutes: 0,
 //             seconds: 0,
-//             movementTimer: 0,
-//             token: '',
-//             loggedIn: '',
+//             pausedTime: 0,
+//             // movementTimer: 0,
+//             token: 'BQC-rTr6pu8jNeYl_3Nxl94paaruL-ZwBaE09NzRH1S96kAM3uYP3q0IfxlmShetHn3q-XiA762VSCX35CpoF40BEsbB3PUqN5NwIPyiu0AA2TpscfzirdBpy28I1Rjt8XnDg9qwD0h84Ksa9_hxGZgJLzpCPms2TWsB2nmeSsjhKQ',
+//             // loggedIn: '',
 //             nowPlaying: {
 //                 nowPlayingTitle: 'Currently Paused' , 
 //                 deviceId: ''
 //                 // albumArt: ""
 //             }
 //         };
-//         this.movementTracker = this.movementTracker.bind(this)
-//         // this.timer = this.timer.bind(this)
+//         this.changeAccordionMovement = this.changeAccordionMovement.bind(this)
+//         this.pausedTimer = this.pausedTimer.bind(this)
+//         this.timer = this.timer.bind(this)
 //         this.handleShow = this.handleShow.bind(this)
 //         this.handleClose = this.handleClose.bind(this)
 //         this.countDown = this.countDown.bind(this)
-//         // this.getNowPlaying = this.getNowPlaying.bind(this)
+//         this.stopCountDown = this.stopCountDown.bind(this)
+//         // this.resetPausedTimer = this.resetPausedTimer.bind(this)
+//         this.getNowPlaying = this.getNowPlaying.bind(this)
 //     }
 
 //     componentDidMount(){
-//         this.setState({token: this.props.user[0].accessToken})
 //         this.handleShow()
 //         this.countDown()
 //         this.setState({movementTimer: this.props.workout.workout[0].movements[0].time})
 //         this.setState({minutes: this.props.workout.workout[0].time / 60})
-//         // this.getNowPlaying()
 //     }
 
 //     countDown = () => {
 //         this.myCountDownInterval = setInterval(() => {
-//             // console.log(this.state.count)
-//             if(this.state.countDown > 0){
+//             if(this.state.countDownTime > 0){
 //                 this.setState({
-//                     countDown: this.state.countDown -1
+//                     countDownTime: this.state.countDownTime -1
 //                 })
 //             }else{
-//                 this.stopCountDown()
-//                 // this.timer()
+//                 this.timer()
+//                 this.changeAccordionMovement()
 //                 this.handleClose()
-//                 this.movementTracker()
-//                 // this.getNowPlaying()
+//                 this.playMusic() 
+//                 this.stopCountDown()
 //             }
 //         }, 1000)
 //     }
 
 //     stopCountDown = () => {
 //         clearInterval(this.myCountDownInterval)
+//         this.setState({countDownTime: 10})
+//         // this.resetPausedTimer()
 //     }
 
-//    movementTracker = () => {
+//     pausedTimer = () => {
+//         console.log('pausedClicked')
+//         this.myPausedTimer = setInterval(() => {
+//             console.log("PT: ", this.state.pausedTime)
+//             this.setState({
+//                 pausedTime: this.state.pausedTime +1
+//             })
+//         }, 1000)
+//     }
+    
+//     // resetPausedTimer = () => {
+        
+//     //     this.setState({pausedTime: 0})
+//     //     setTimeout (() =>{
+//     //        this.changeAccordionMovement()
+//     //     }, this.state.pausedTimer)
+//     // }
+
+//     stopPausedTimer = () =>{
+//         clearInterval(this.myPausedTimer)
+//     }
+
+//     changeAccordionMovement = () => {
+//     console.log('clicked change accordionMovement')
+//     let movementTime = this.props.workout.workout[0].movements[this.state.movementKeyCount -1].time 
+//     let timePaused = this.state.pausedTime
+//     console.log('time paused', timePaused)
+//     let accordionTime = movementTime - timePaused
+//     console.log('Accord time before ', accordionTime)
+//     // this.resetPausedTimer()
 //         this.myInterval = setInterval(() => {
-//             console.log('state from play wod and music', this.state)
 //             if(this.state.movementKeyCount < this.props.workout.workout[0].movements.length){
-//                this.setState(prevState => ({
-//                     movementKeyCount: prevState.movementKeyCount +1
-//                 }))
+//               this.setState(prevState => ({
+//                 movementKeyCount: prevState.movementKeyCount +1
+//               }))
 //             }else{
-//                 if(this.state.round < this.props.workout.workout[0].rounds){              
-//                   this.setState(prevState => ({
+//                 if(this.state.round < this.props.workout.workout[0].rounds){          
+//                     this.setState(prevState => ({
 //                         movementKeyCount: 1,
 //                         round: prevState.round +1
 //                     }))
-//                 }else{
-//                   this.setState({
+//                 }else{ 
+//                     this.setState({
 //                         movementKeyCount: 1,
 //                         round: "DONE"
 //                     })
-//                     // this.wodIsCompleted()
+//                     this.wodIsCompleted()
 //                 }
 //             }
-//         }, this.state.movementTimer * 999.9)
+//         }, accordionTime * 999.9)
 //     }
 
 //     timer = () => {
-
-//        this.timerInterval = setInterval(() => {
-//         //    this.getNowPlaying()
+//         this.timerInterval = setInterval(() => {
 //             const { seconds, minutes } = this.state
-//             const{movementTimer} = this.state
-//             console.log('state tracked in timer', this.state)
-//             // console.log('movementKeyCount', this.state.movementKeyCount)
-//             // console.log('movementTimer', movementTimer)
-//             // console.log("next movement", this.props.workout.workout[0].movements[this.state.movementKeyCount])
-//             // console.log("next timer", this.props.workout.workout[0].movements[this.state.movementKeyCount].time)
-//             if(movementTimer === 0){         
-//               this.setState({
-//                     movementTimer: this.props.workout.workout[0].movements[this.state.movementKeyCount -1].time
-//                 })
-//             }else{
-//                this.setState(prevState => ({
-//                     movementTimer: prevState.movementTimer  -1
-//                 }))
-//             }
 //             if (seconds > 0) {
 //                 this.setState(({ seconds }) => ({
 //                     seconds: seconds - 1
@@ -132,23 +146,20 @@
 //     wodIsCompleted = () => {
 //         clearInterval(this.myInterval)
 //     }
-//     // stopTimer = () => {
-//     //     clearInterval(this.timerInterval)
-//     // }
+//     stopTimer = () => {
+//         clearInterval(this.timerInterval)
+//     }
 
-//     resume = () => {
-//         console.log('resume clicked')
-//         console.log('resume state', this.state)
-//         // this.timer()
-//         this.playMusic()
-//         this.movementTracker()
+//     resume = () =>{
+//         this.handleShow()
+//         this.countDown()
+//         this.stopPausedTimer()
 //     }
 
 //     pause = () => {
-//         console.log("pause clicked")
-//         console.log('pause state', this.state)
 //         this.wodIsCompleted()
-//         // this.stopTimer()
+//         this.stopTimer()
+//         this.pausedTimer()
 //         this.pauseMusic()
 //     }
 
@@ -161,23 +172,21 @@
 //     } 
 
 
-
-
-// //    getNowPlaying = () => {
-// //         fetch('https://api.spotify.com/v1/me/player', {
-// //             headers:{'Authorization': 'Bearer ' + this.state.token}
-// //             }).then(response => response.json())
-// //             .then((data) => {
-// //                 // console.log('player data ', data)
-// //                this.setState({
-// //                     nowPlaying: { 
-// //                         nowPlayingTitle: data.item.name,
-// //                         deviceId: data.device.id 
-// //                         // albumArt: data.item.album.images[0].url
-// //                       }
-// //                 });
-// //             })
-// //     }
+//    getNowPlaying = () => {
+//         fetch('https://api.spotify.com/v1/me/player', {
+//             headers:{'Authorization': 'Bearer ' + this.state.token}
+//             }).then(response => response.json())
+//             .then((data) => {
+//                 // console.log('player data ', data)
+//                this.setState({
+//                     nowPlaying: { 
+//                         nowPlayingTitle: data.item.name,
+//                         deviceId: data.device.id 
+//                         // albumArt: data.item.album.images[0].url
+//                       }
+//                 });
+//             })
+//     }
 
 //     //  "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer BQA1af2HbmkKjjXqPzIobnyAghU7U3poYxOCI4LtYZ7oF_Bk3Ub6EwxFBAhTpSXYVNhjlFSNGfAoexZN7LKVMDLGBgsiDMTq8g5IOJLJ0_6zbTgxzqA_eWiVge5lbbyiTugv7xef55eSAdCkYgojrTbIf3bGtp-ZgBxi5w"
 
@@ -194,7 +203,7 @@
 //             //   },
 //             headers: {
 //                 "Accept": "application/json",
-//                 "Authorization": "Bearer BQAmkydnsrosUNVR-7DB0o8XkHv0zzFZO2ohSrYzN1nogNr7oXTNqlwTuvWnRqmU8wexaBsK5vYRvMnzlJmGLH9rSvlcREP_iMCDJ0HKDh7Jvs7FxpkKrDfbqjD_nCNY3_leZ2K9-WEUScB0HTEg_Pl6aBBQetpLt2TwGUTPdKoPgQ",
+//                 "Authorization": "Bearer " + this.state.token ,
 //                 "Content-Type": "application/json"
 //             }
 //         })
@@ -206,13 +215,10 @@
 //             method: "PUT",
 //             headers: {
 //                 "Content-Type": "application/json",
-//                 "Authorization": "Bearer BQAmkydnsrosUNVR-7DB0o8XkHv0zzFZO2ohSrYzN1nogNr7oXTNqlwTuvWnRqmU8wexaBsK5vYRvMnzlJmGLH9rSvlcREP_iMCDJ0HKDh7Jvs7FxpkKrDfbqjD_nCNY3_leZ2K9-WEUScB0HTEg_Pl6aBBQetpLt2TwGUTPdKoPgQ",
+//                 "Authorization": "Bearer " + this.state.token 
 //             }
 //         })
 //     }
-
-
-
 
 //     renderHeader(){
 //         const { minutes, seconds } = this.state
@@ -314,7 +320,7 @@
 //     }
 
 
-//     renderModal (){
+//   renderModal (){
 //         if(this.state.show === true){
 //             return (
 //             <>
@@ -327,7 +333,7 @@
 //                 <Modal.Title><h1 style={{textAlign: "center"}}>YOUR WORKOUT STARTS IN</h1></Modal.Title>
 //               </Modal.Header>
 //               <Modal.Body>
-//                  <h1 style={{textAlign: "center"}}>{this.state.countDown}</h1>
+//                  <h1 style={{textAlign: "center"}}>{this.state.countDownTime}</h1>
 //               </Modal.Body>
 //             </Modal>
 //           </>
@@ -337,10 +343,7 @@
 //                 <div></div>
 //             )
 //         }
-        
-
-//     }
-    
+//   }
     
 //   render() {
 //       const {movementKeyCount} = this.state
@@ -377,4 +380,4 @@
 // }
 
 
-// export default connect(mapStateToProps, actions)(WorkoutPage);
+// export default connect(mapStateToProps, actions)(WorkoutPageTwo);

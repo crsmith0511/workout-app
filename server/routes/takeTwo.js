@@ -86,7 +86,7 @@ router.use(passport.session());
 router.get(
   '/auth/spotify',
   passport.authenticate('spotify', {
-    scope: ['user-read-email', 'user-read-private', 'user-read-currently-playing', 'user-read-playback-state', 'streaming', 'app-remote-control'],
+    scope: ['user-read-email', 'user-read-private', 'user-read-currently-playing', 'user-read-recently-played', 'user-read-playback-state', 'streaming', 'app-remote-control'],
     showDialog: true
   }),
   function(req, res) {

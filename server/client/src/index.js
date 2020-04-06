@@ -10,8 +10,9 @@ import thunk from "redux-thunk";
 import rootReducer from "./reducers/index";
 import Home from './components/Home'
 import Preview from './components/PreviewWOD'
-import Workout from './components/WorkoutPage'
+import Workout from './components/WorkoutTakeThree'
 import LandingPage from "./components/LandingPage";
+import Review from "./components/PostWorkoutStats";
 
 const store = createStore(rootReducer, {}, applyMiddleware(thunk));
 
@@ -26,6 +27,7 @@ render(
            <Route exact path="/home" component={Home} />
            <Route exact path="/preview" component={Preview} />
            <Route exact path="/workout" component={Workout} />
+           <Route exact path="/post-workout" component={Review} />
           </Switch>
         </App>
       </Fragment>

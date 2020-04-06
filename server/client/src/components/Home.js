@@ -34,18 +34,18 @@ class Home extends Component {
   componentDidMount = () => {
     this.props.fetchUser()
   }  
-  async categoryClick(event) {
-    await this.setState({ category: event, categorySelected: true });
+  categoryClick(event) {
+    this.setState({ category: event, categorySelected: true });
     this.renderStartWodButton()
   }
 
-  async typeClick(event) {
-    await this.setState({ type: event, typeSelected: true });
+  typeClick(event) {
+    this.setState({ type: event, typeSelected: true });
     this.renderStartWodButton()
   }
 
   //get workout is on the start workout button which will appear when type and category has been clicked
-  async getWorkout() { 
+  getWorkout() { 
       this.setState({show: false})
       function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
@@ -62,7 +62,7 @@ class Home extends Component {
           <Button color="primary" onClick={this.getWorkout}>Create Workout</Button>
         )
       }
-    }
+  }
   
 
   render() {
