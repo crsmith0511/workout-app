@@ -9,7 +9,7 @@ import thunk from "redux-thunk";
 import rootReducer from "./reducers/index";
 import Home from './components/Home'
 import Preview from './components/PreviewWOD'
-import Workout from './components/WorkoutTakeThree'
+import Workout from './components/WorkoutPage'
 import LandingPage from "./components/LandingPage";
 import Review from "./components/PostWorkoutStats";
 

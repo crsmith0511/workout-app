@@ -4,31 +4,21 @@ import styled from "styled-components";
 // import * as actions from '../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faChartPie, faDoorClosed} from "@fortawesome/free-solid-svg-icons";
-
 import './Nav.css';
 
-// //loops through users
-// renderPerson = (p) => {
-//     return(
-//       <Image src={p.profile_pic_url} roundedCircle fluid width="30px" height='30px'/>
-//     )
-//   }
-
-const Nav = () => {
+const Nav = user => {
   const handleLogoutClick = () => {
-    // Logout using Google passport api
-    // Set authenticated state to false in the HomePage
     window.open('http://localhost:5000/logout', "_self");
   };
 
   const renderLinks = () => {
-
       return (
         <React.Fragment>
           <li></li>
           <li><Link to="/home"><FontAwesomeIcon icon={faHome} /> Home</Link></li>
           <li style={{marginLeft: "5px"}}><Link to="/home"><FontAwesomeIcon icon={faChartPie}/> Activity</Link></li>
           <li style={{color: "#22212e"}} onClick={handleLogoutClick}><FontAwesomeIcon icon={faDoorClosed} /> Sign Out</li>
+          {/* <li style={{color: "#22212e"}}><Link to="/home"> Welcome!</Link></li> */}
         </React.Fragment>
 
       );
@@ -74,6 +64,8 @@ const NavUl = styled.ul`
   list-style: none;
   li:first-child {
     float: right;
+    margin-left: 20px;
+    color: #22212e;
   }
   li {
     padding: 20px;

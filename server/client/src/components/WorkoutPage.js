@@ -9,7 +9,7 @@ import './wod.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faFastBackward, faFastForward } from "@fortawesome/free-solid-svg-icons";
 
-class WorkoutTakeThree extends Component {
+class Workout extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -75,7 +75,7 @@ class WorkoutTakeThree extends Component {
                 movementKeyCount: prevState.movementKeyCount +1
               }))
             }else{
-                if(this.state.round < this.props.workout.workout[0].rounds){          
+                if(this.state.round < this.props.workout.workout[0].rounds){        
                     this.setState(prevState => ({
                         movementKeyCount: 1,
                         round: prevState.round +1
@@ -152,13 +152,11 @@ class WorkoutTakeThree extends Component {
         this.props.history.push('/post-workout');
     } 
 
-
    getNowPlaying = () => {
        fetch('https://api.spotify.com/v1/me/player',{
             headers:{'Authorization': `Bearer ${this.props.user[0].accessToken}` }
             }).then(response => response.json())
             .then((data) => {
-                console.log('player data ', data)
                 this.setState({
                     nowPlaying: { 
                         deviceId: data.device.id 
@@ -170,7 +168,6 @@ class WorkoutTakeThree extends Component {
             headers:{'Authorization': `Bearer ${this.props.user[0].accessToken}`}
             }).then(response => response.json())
             .then((data) => {
-               console.log('currently-playing ', data.item)
                this.setState({
                     nowPlaying: { 
                         nowPlayingTitle: data.item.name, 
@@ -289,13 +286,12 @@ class WorkoutTakeThree extends Component {
         if(this.props.workout.workout.length === 0){
             return <div>Loading...</div>; 
         }
-
         const movements = this.props.workout.workout[0].movements
         return _.map(movements, movement => {
             if(movement.movement === "Rest"){
               return(
                 <Card style={{width: "100%"}} key={movement._id}>
-                    <Accordion.Toggle as={Card.Header} eventKey={movement.index}>
+                    <Accordion.Toggle as={Card.Header}  eventKey={movement.index} >
                         <Row>
                            <Col xs="8">
                                 <h4 style={{textAlign: "Left", marginLeft: "5px"}}>{movement.movement}</h4>
@@ -305,7 +301,7 @@ class WorkoutTakeThree extends Component {
                             </Col>
                         </Row>
                     </Accordion.Toggle>
-                    <Accordion.Collapse eventKey={movement.index}>
+                    <Accordion.Collapse eventKey={movement.index} >
                     <Card.Body style={{background: "#e1e5f2"}}>
                        <Card.Title>REST BREAK</Card.Title> 
                     </Card.Body>
@@ -428,5 +424,5 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ fetchWOD, fetchUser }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WorkoutTakeThree);
+export default connect(mapStateToProps, mapDispatchToProps)(Workout);
 

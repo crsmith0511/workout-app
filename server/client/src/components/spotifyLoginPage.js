@@ -6,6 +6,7 @@ import { fetchUser } from '../actions/index';
 import { Container, Card, CardTitle, Row, Col, Button, CardHeader, CardBody, CardText} from 'reactstrap';
 // import './wod.css';
 
+
 class Login extends Component {
   async fetchUser () {
     console.log('got to fetch user in landing page')
