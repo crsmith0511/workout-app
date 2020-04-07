@@ -94,9 +94,7 @@ class WorkoutTakeThree extends Component {
 
     timer = () => {
         this.timerInterval = setInterval(() => {
-            // const length = this.props.workout.workout[0].movements.length
             const indexNumber = this.props.workout.workout[0].movements[this.state.movementKeyCount -1].time
-            // console.log('this timer state', this.state)
             if(this.state.movementTimer === 1){    
                 this.setState({
                      movementTimer: indexNumber
@@ -114,9 +112,11 @@ class WorkoutTakeThree extends Component {
     }
 
     stopAccordion = () => {
+        this.pauseMusic()
         clearInterval(this.myInterval)
     }
     stopTimer = () => {
+        this.pauseMusic()
         clearInterval(this.timerInterval)
     }
 
@@ -131,6 +131,13 @@ class WorkoutTakeThree extends Component {
         this.stopTimer()
         this.pauseMusic()
         this.setState({running: false})
+    }
+
+    stopWorkout = () =>{
+        // this.stopAccordion()
+        // this.timer()
+        this.pause()
+        this.props.history.push('/home')
     }
 
     handleClose = () => {
@@ -157,7 +164,8 @@ class WorkoutTakeThree extends Component {
                         deviceId: data.device.id 
                     }
                 });
-            })
+        })
+
         fetch('https://api.spotify.com/v1/me/player/currently-playing', {
             headers:{'Authorization': `Bearer ${this.props.user[0].accessToken}`}
             }).then(response => response.json())
@@ -190,6 +198,7 @@ class WorkoutTakeThree extends Component {
                 "Content-Type": "application/json"
             }
         })
+        this.getNowPlaying()
     }
 
     pauseMusic = () =>{
@@ -201,6 +210,28 @@ class WorkoutTakeThree extends Component {
                 "Authorization": `Bearer ${this.state.token}`
             }
         })
+    }
+
+    skipForward = () =>{
+        fetch('https://api.spotify.com/v1/me/player/next', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${this.state.token}`
+            }
+        })
+        this.getNowPlaying()
+    }
+
+    skipBackward = () =>{
+        fetch('https://api.spotify.com/v1/me/player/previous', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${this.state.token}`
+            }
+        })
+        this.getNowPlaying()
     }
 
     renderPlayOrPause(){
@@ -233,9 +264,9 @@ class WorkoutTakeThree extends Component {
                         {/* <h4> { minutes === 0 && seconds === 0? <h1>Busted!</h1>: <h1>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1>}</h4> */}
                     </Col>
                     <Col xs="4" style={{textAlign: "center"}}>
-                       <FontAwesomeIcon className="fa-2x" style={{marginRight: "10px", marginTop: "10px"}} icon={faFastBackward} /> 
+                       <FontAwesomeIcon onClick={this.skipBackward} className="fa-2x" style={{marginRight: "10px", marginTop: "10px"}} icon={faFastBackward} /> 
                         {this.renderPlayOrPause()}
-                        <FontAwesomeIcon className="fa-2x" style={{marginLeft: "10px", marginRight: "10px", marginTop: "10px"}} icon={faFastForward} /> 
+                        <FontAwesomeIcon onClick={this.skipForward} className="fa-2x" style={{marginLeft: "10px", marginRight: "10px", marginTop: "10px"}} icon={faFastForward} /> 
                     </Col>
                     <Col xs="4" style={{textAlign: "right", marginTop: "12px"}}>
                         <h4>Round: {this.state.round}/{this.props.workout.workout[0].rounds}</h4>
@@ -255,13 +286,11 @@ class WorkoutTakeThree extends Component {
     }
 
     renderAccordion() {
-
         if(this.props.workout.workout.length === 0){
             return <div>Loading...</div>; 
         }
-        // console.log('this is length', this.props.workout.workout[0].movements.length)
+
         const movements = this.props.workout.workout[0].movements
-        // console.log('waiting for workout', movements)
         return _.map(movements, movement => {
             if(movement.movement === "Rest"){
               return(
@@ -272,7 +301,7 @@ class WorkoutTakeThree extends Component {
                                 <h4 style={{textAlign: "Left", marginLeft: "5px"}}>{movement.movement}</h4>
                             </Col>
                             <Col xs="4">
-                                <h5 style={{textAlign: "right"}}>Time: {movement.time}</h5>
+                                <h5 style={{textAlign: "right"}}>Time :{movement.time < 10 ? `0${movement.time}` : movement.time}</h5>
                             </Col>
                         </Row>
                     </Accordion.Toggle>
@@ -292,7 +321,7 @@ class WorkoutTakeThree extends Component {
                                 <h4 style={{textAlign: "Left", marginLeft: "5px"}}>{movement.movement}</h4>
                             </Col>
                             <Col xs="4">
-                                <h5 style={{textAlign: "right"}}>Time: {movement.time}</h5>
+                                <h5 style={{textAlign: "right"}}>Time :{movement.time < 10 ? `0${movement.time}` : movement.time}</h5>
                             </Col>
                         </Row>
                     </Accordion.Toggle>
@@ -300,14 +329,13 @@ class WorkoutTakeThree extends Component {
                     <Card.Body style={{background: "#e1e5f2"}}>
                         <Row>
                           <Col xs="12" onClick={this.pause}>
-                          <iframe  width="350" height="200" src={movement.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
-                            <div onClick={this.pause}></div>
+                          <iframe width="350" height="200" src={movement.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
                           </iframe>
                           </Col>
                         </Row>
                         <Row>
                           <Col xs="12">
-                          <h5>Clicking Play Will Pause Your Workout.</h5>
+                          <h5>Click The Pause Button Up Top to Watch This Video.</h5>
                           </Col>
                         </Row>
                     </Card.Body>
@@ -342,6 +370,17 @@ class WorkoutTakeThree extends Component {
             )
         }
   }
+
+  renderStopWorkout (){
+    if(this.props.workout.workout.length === 0){
+        return <div></div> 
+    }
+    return(
+        <Button style={{width: "100%", height: "60px", marginBottom: "20px", background: "#37354a"}} size="lg" onClick={this.stopWorkout}>
+            Stop Workout And Return To Home Page
+        </Button>
+    )
+ }
     
   render() {
       const {movementKeyCount} = this.state
@@ -349,21 +388,26 @@ class WorkoutTakeThree extends Component {
     return (
       <div className="background">
         <Container style={{marginTop: "15px"}}>
-        <Row style={{textAlign: "center", marginBottom: "10px"}}>
-          <Col xs="12">
-          {this.renderHeader()}
-          </Col>
-        </Row>
-       <Row> 
-         <Col xs="12">
-            <Accordion activeKey={stringedMovementKeyCount}>
-                {this.renderAccordion()}
-            </Accordion>
-         </Col>
-       </Row>
-       <Row>
-        {this.renderModal()}
-       </Row>
+            <Row style={{textAlign: "center", marginBottom: "10px"}}>
+                <Col xsm="12" style={{textAlign: "center"}}>
+                    {this.renderStopWorkout()}
+                </Col>
+            </Row>
+            <Row style={{textAlign: "center", marginBottom: "10px"}}>
+                <Col xs="12">
+                    {this.renderHeader()}
+                </Col>
+            </Row>
+            <Row style={{textAlign: "center", justifyContent: "center"}}>
+                {this.renderModal()}
+            </Row>
+            <Row> 
+                <Col xs="12">
+                    <Accordion activeKey={stringedMovementKeyCount}>
+                        {this.renderAccordion()}
+                    </Accordion>
+                </Col>
+            </Row>
         </Container> 
       </div>
     );

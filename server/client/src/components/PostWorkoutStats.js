@@ -9,7 +9,7 @@ import Nav from './Nav'
 import {
     Sparklines,
     SparklinesLine,
-    SparklinesReferenceLine
+    SparklinesBars
   } from 'react-sparklines';
 
 
@@ -24,16 +24,26 @@ class PostWOD extends Component {
     }
 
     componentDidMount = () => {
+      console.log('did mount state', this.state.songs)
         this.getSongs()
+        this.renderChart()
     } 
 
   getSongs(){
+    // const date = new Date();
+    // const now = date.getMilliseconds();
+    // let workouttimeInMilli = this.props.workout[0].time
+    // let timeSinceWODStarted = now + workouttimeInMilli
+
+    //when you want a live time call the fetch Url would be:
+    //https://api.spotify.com/v1/me/player/recently-played?after=timeSinceWODStarted
     console.log('state in get song',this.props.user, this.props.workout)
-     fetch('https://api.spotify.com/v1/me/player/recently-played?limit=1', {
+     fetch('https://api.spotify.com/v1/me/player/recently-played?limit=5', {
         headers:{'Accept': "application/json",'Authorization': `Bearer ${this.props.user[0].accessToken}`, 
         "Content-Type": "application/json"}
         }).then(response => response.json())
         .then((data) => {
+          console.log('get song', data.items)
           let playedSongs = []
           for(let i = 0; i < data.items.length; i++){
            
@@ -43,46 +53,17 @@ class PostWOD extends Component {
               albumnCover: data.items[i].track.album.images[1].url
             }
             playedSongs.push(track)
-            // this.setState({songs: playedSongs})
-            // console.log(track)
           }
            this.setState({songs: playedSongs})
     })
   }
 
-  // getWorkoutData = () =>{
-  //   let rounds = this.props.workout[0].rounds
-  //   let movements = this.props.workout[0].movements
-  //   //eventually that 4 will be rounds
-  //   let total = movements.length * 4
-  //   console.log(total)
-  //   let dataList = [0]
-  //   for(let j = 0; j < total; j++){
-  //     for(let i = 0; i < movements.length; i++){
-  //       if(movements[i].difficulty === 'Hard'){
-  //         dataList.push(25)
-  //       }
-  //       if(movements[i].difficulty === 'Medium'){
-  //         dataList.push(15)
-  //       }
-  //       if(movements[i].difficulty === 'Easy'){
-  //           dataList.push(5)
-  //       }
-  //     }
-  //   }
-  //   console.log(dataList)
-  //    this.setState(prevState =>({
-  //      data: prevState.data.concat(dataList)
-  //     }))
-  //    console.log(this.state.data)
-  // }
-
   renderChart(){
     let rounds = this.props.workout[0].rounds
     let movements = this.props.workout[0].movements
     //eventually that 4 will be rounds
-    let total = movements.length * 4
-    // console.log(total)
+    // let total = movements.length 
+    let total = 2
     let dataList = [0]
     for(let j = 0; j < total; j++){
       for(let i = 0; i < movements.length; i++){
@@ -97,13 +78,14 @@ class PostWOD extends Component {
         }
       }
     }
+    console.log(dataList)
     return(
         <Card style={{width: "100%", borderRight: "none", borderTop: "none", background: "#e1e5f2"}}> 
         <CardTitle>
             <h1>Workout Zones</h1>
         </CardTitle>
-            <Sparklines data={dataList}>
-                <SparklinesLine color="#080f47" />
+            <Sparklines data={dataList} style={{width: "100%"}}> 
+                <SparklinesBars color= "#37354a" />
             </Sparklines>
         </Card>
     )
@@ -131,7 +113,6 @@ class PostWOD extends Component {
 
     
   render() {
-
     return (
       <div className="background">
       <Nav />
@@ -141,11 +122,11 @@ class PostWOD extends Component {
            {this.renderChart()}
           </Col>
         </Row>
-        <Row>
+        <Row style={{marginTop: "10px"}}>
           <Col>
           <ListGroup as="ul">
             <ListGroup.Item style={{textAlign: "center", color: "#22212e", background: "#c7d0ed"}}>
-            Songs Played During Your Workout
+              <h4>Songs Played During Your Workout</h4>
             </ListGroup.Item>
             {this.renderRecentlyPlayed()}
           </ListGroup>

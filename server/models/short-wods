@@ -3,10 +3,11 @@
     // workout.type = "Body-Weight",
     // workout.time = 720,
     // workout.rounds = 4,
-    // workout.description = "Four rounds of working for :30, resting for :30. All movements plus rest equals 1 round."
+    // workout.description = "All movements plus rest equal 1 round."
     // workout.movements = [{
     //   movement: "Air Squats",
     //   difficulty: "Easy",
+    //   index: "1",
     //   time: 30,
     //   reps: "As many reps as possible.",
     //   video: "https://www.youtube.com/watch?v=rMvwVtlqjTE&list=PLdWvFCOAvyr0q99QIkLBq4tfYhTVbsBIs",
@@ -14,11 +15,13 @@
     // {
     //   movement: "Rest",
     //   difficulty: "Easy",
+    //   index: "2",
     //   time: 30
     // },
     // {
     //   movement: "Push-Ups",
     //   difficulty: "Hard",
+    //   index: "3",
     //   time: 30,
     //   reps: "As many reps as possible.",
     //   video: "https://www.youtube.com/watch?v=0pkjOk0EiAk&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=11",
@@ -26,11 +29,13 @@
     // {
     //   movement: "Rest",
     //   difficulty: "Easy",
+    //   index: "4",
     //   time: 30
     // },
     // {
     //   movement: "Jump-Rope",
     //   difficulty: "Easy",
+    //   index: "5",
     //   time: 30,
     //   reps: "As many reps as possible.",
     //   video: "https://www.youtube.com/watch?v=h3mh7B4YHI4&list=PLtzeqj0zQWd_QHAZbdKYqhYW4O3t16abN&index=31",
@@ -39,6 +44,7 @@
     // {
     //   movement: "Rest",
     //   difficulty: "Easy",
+    //   index: "6",
     //   time: 30
     // }]
 
@@ -46,57 +52,13 @@
     // workout.category = "Short",
     // workout.type = "Body-Weight",
     // workout.time = 720,
-    // workout.rounds = 4,
-    // workout.description = "Four rounds of working for :45, resting for :15. All movements plus rest equals 1 round."
-    // workout.movements = [{
-    //   movement: "Burpee",
-    //   difficulty: "Medium",
-    //   time: 45,
-    //   reps: "As many reps as possible.",
-    //   video: "https://www.youtube.com/watch?v=auBLPXO8Fww&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=36",
-    //   rest: 15
-    // },
-    // {
-    //   movement: "Rest",
-    //   difficulty: "Easy",
-    //   time: 15
-    // },
-    // {
-    //   movement: "Sit-Ups",
-    //   difficulty: "Easy",
-    //   time: 45,
-    //   reps: "As many reps as possible.",
-    //   video: "https://www.youtube.com/watch?v=VIZX2Ru9qU8&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=37",
-    // },
-    // {
-    //   movement: "Rest",
-    //   difficulty: "Easy",
-    //   time: 15
-    // },
-    // {
-    //   movement: "Box-Jumps",
-    //   difficulty: "Medium",
-    //   time: 45,
-    //   reps: "As many reps as possible.",
-    //   video: "https://www.youtube.com/watch?v=NBY9-kTuHEk&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=44",
-    //   description: "Don't have something you can jump on? Substitution: jump as high as you can in place.",
-    // },
-    // {
-    //   movement: "Rest",
-    //   difficulty: "Easy",
-    //   time: 15
-    // }]
-
-    // workout.number = 3,
-    // workout.category = "Short",
-    // workout.type = "Body-Weight",
-    // workout.time = 600,
-    // workout.rounds = 4,
+    // workout.rounds = 8,
     // workout.description = "Four rounds of working for 1:00. There is not transition time between movements. Rest :30 after you complete both movements. All movements plus rest equals 1 round."
     // workout.movements = [{
     //   movement: "Walking Lunges",
     //   difficulty: "Easy",
-    //   time: 60,
+    //   index: "1",
+    //   time: 30,
     //   reps: "As many reps as possible.",
     //   video: "https://www.youtube.com/watch?v=auBLPXO8Fww&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=36",
     //   description: "Can do walking lunges or lunges in place.",
@@ -104,13 +66,15 @@
     // {
     //   movement: "Mountain Climbers",
     //   difficulty: "Medium",
-    //   time: 60,
+    //   index: "2",
+    //   time: 30,
     //   reps: "As many reps as possible.",
     //   video: "https://www.youtube.com/watch?v=bw4lYQ3P-xI&list=PLtzeqj0zQWd_QHAZbdKYqhYW4O3t16abN&index=50",
     // },
     // {
     //   movement: "Rest",
     //   difficulty: "Easy",
+    //   index: "3",
     //   time: 30
     // }]
 
@@ -119,10 +83,11 @@
     // workout.type = "BarBell",
     // workout.time = 720,
     // workout.rounds = 4,
-    // workout.description = "Four rounds of working for :30, resting for :30. All movements plus rest equals 1 round. Choose a weight you can stay moving at."
+    // workout.description = "All movements plus rest equals 1 round. Choose a weight you can stay moving for the :30."
     // workout.movements = [{
     //   movement: "BarBell Front Squats",
     //   difficulty: "Hard",
+    //   index: "1",
     //   time: 30,
     //   reps: "As many reps as possible",
     //   video: "https://www.youtube.com/watch?v=uYumuL_G_V0&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=9"
@@ -130,11 +95,13 @@
     // {
     //   movement: "Rest",
     //   difficulty: "Easy",
+    //   index: "2",
     //   time: 30
     // },
     // {
     //   movement: "Push-Press",
     //   difficulty: "Medium",
+    //   index: "3",
     //   time: 30,
     //   reps: "As many reps as possible",
     //   video: "https://www.youtube.com/watch?v=iaBVSJm78ko&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=14",
@@ -142,11 +109,13 @@
     // {
     //   movement: "Rest",
     //   difficulty: "Easy",
+    //   index: "4",
     //   time: 30
     // },
     // {
     //   movement: "Jump-Rope",
     //   difficulty: "Easy",
+    //   index: "5",
     //   time: 30,
     //   reps: "As many reps as possible",
     //   video: "https://www.youtube.com/watch?v=h3mh7B4YHI4&list=PLtzeqj0zQWd_QHAZbdKYqhYW4O3t16abN&index=31",
@@ -155,6 +124,7 @@
     // {
     //   movement: "Rest",
     //   difficulty: "Easy",
+    //   index: "6",
     //   time: 30
     // }]
 
@@ -162,55 +132,50 @@
     // workout.category = "Short",
     // workout.type = "BarBell",
     // workout.time = 720,
-    // workout.rounds = 4,
+    // workout.rounds = 3,
     // workout.description = "Four rounds of working for :45, resting for :15. All movements plus rest equals 1 round."
     // workout.movements = [{
     //   movement: "Burpee",
     //   difficulty: "Medium",
-    //   time: 45,
+    //   index: "1",
+    //   time: 60,
     //   reps: "As many reps as possible.",
     //   video: "https://www.youtube.com/watch?v=auBLPXO8Fww&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=36"
     // },
     // {
-    //   movement: "Rest",
-    //   difficulty: "Easy",
-    //   time: 15
-    // },
-    // {
     //   movement: "Deadlifts",
     //   difficulty: "Medium",
-    //   time: 45,
+    //   index: "2",
+    //   time: 60,
     //   reps: "As many reps as possible.",
     //   video: "https://www.youtube.com/watch?v=1ZXobu7JvvE&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=1"
     // },
     // {
-    //   movement: "Rest",
-    //   difficulty: "Easy",
-    //   time: 15
-    // },
-    // {
     //   movement: "Box-Jumps",
     //   difficulty: "Medium",
-    //   time: 45,
+    //   index: "3",
+    //   time: 60,
     //   reps: "As many reps as possible.",
     //   video: "https://www.youtube.com/watch?v=NBY9-kTuHEk&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=44",
     //   description: "Don't have something you can jump on? Substitution: jump as high as you can in place."
-    // },
+    // }
     // {
     //   movement: "Rest",
     //   difficulty: "Easy",
-    //   time: 15
+    //   index: "4",
+    //   time: 60
     // }]
 
     // workout.number = 3,
     // workout.category = "Short",
     // workout.type = "BarBell",
-    // workout.time = 600,
+    // workout.time = 720,
     // workout.rounds = 4,
-    // workout.description = "Four rounds of working for 1:00. There is not transition time between movements. Rest :30 after you complete both movements. All movements plus rest equals 1 round."
+    // workout.description = "All movements plus rest equals 1 round."
     // workout.movements = [{
     //   movement: "Barbell Thrusters",
     //   difficulty: "Hard",
+    //   index: "1",
     //   time: 60,
     //   reps: "As many reps as possible.",
     //   video: "https://www.youtube.com/watch?v=L219ltL15zk&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=18",
@@ -218,12 +183,14 @@
     // {
     //   movement: "BarBell Sumo Deadlift High Pulls",
     //   difficulty: "Hard",
+    //   index: "2",
     //   time: 60,
     //   reps: "As many reps as possible.",
     //   video: "https://www.youtube.com/watch?v=gh55vVlwlQg&list=PLdWvFCOAvyr3EWQhtfcEMd3DVM5sJdPL4&index=10",
     // },
     // {
     //   movement: "Rest",
+    //   index: "3",
     //   difficulty: "Easy",
-    //   time: 30
+    //   time: 60
     // }]

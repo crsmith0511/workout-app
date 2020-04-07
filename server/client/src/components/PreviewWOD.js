@@ -18,9 +18,7 @@ class PreviewWOD extends Component {
             return <div></div>
         }
         return(
-          <Col>
-            <Button style={{width: "50%", height: "60px", marginBottom: "20px", background: "#22212e"}} size="lg" onClick={this.startWorkout}>Start Workout</Button>
-          </Col>
+            <Button style={{width: "50%", height: "60px", marginBottom: "20px", background: "#37354a"}} size="lg" onClick={this.startWorkout}>Start Workout</Button>
         )
     }
     renderDescription = () => {
@@ -52,7 +50,7 @@ class PreviewWOD extends Component {
                                 <h4 style={{textAlign: "Left", marginLeft: "5px"}}>{movement.movement}</h4>
                             </Col>
                             <Col xs="4">
-                                <h5 style={{textAlign: "right"}}>Time: {movement.time}</h5>
+                                <h5 style={{textAlign: "right"}}>Time :{movement.time < 10 ? `0${movement.time}` : movement.time}</h5>
                             </Col>
                         </Row>
                     </Accordion.Toggle>
@@ -72,7 +70,7 @@ class PreviewWOD extends Component {
                                 <h4 style={{textAlign: "Left", marginLeft: "5px"}}>{movement.movement}</h4>
                             </Col>
                             <Col xs="4">
-                                <h5 style={{textAlign: "right"}}>Time: {movement.time}</h5>
+                                <h5 style={{textAlign: "right"}}>Time :{movement.time < 10 ? `0${movement.time}` : movement.time}</h5>
                             </Col>
                         </Row>
                     </Accordion.Toggle>

@@ -48,7 +48,7 @@ export default Nav;
 
 
 const NavContainer = styled.div`
-  background-color: #c7d0ed;
+background-color: #d0d1db;
   display: block;
   color: #dfdee3;
   margin: 0;
@@ -67,7 +67,7 @@ const NavContainer = styled.div`
 `;
 
 const NavUl = styled.ul`
-  background-color: #c7d0ed;
+  background-color: #d0d1db;
   display: fixed;
   flex-direction: row;
   justify-content: center;
@@ -83,3 +83,5 @@ const NavUl = styled.ul`
   }
 `;
 
+
+// background-color: #b7bcc7;

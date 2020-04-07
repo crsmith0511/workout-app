@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-const mainRouter = require('./routes/takeTwo')
+const mainRouter = require('./routes/spotifyLogin')
 
 app.use(mainRouter)
 

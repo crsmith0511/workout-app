@@ -56,10 +56,11 @@ class Home extends Component {
   renderStartWodButton = () => {
       if(this.state.categorySelected === true && this.state.typeSelected === true){
         return(
-          <Button style={{width: "50%", height: "75px", background: "#22212e" }} size="lg" onClick={this.getWorkout}>Create Workout</Button>
+          <Button style={{width: "50%", height: "75px", background:   "#37354a"}} size="lg" onClick={this.getWorkout}>Create Workout</Button>
         )
       }
   }
+
   render() {
     const {bodyWeightSelected} = this.state.bodyWeightSelected
     return (
