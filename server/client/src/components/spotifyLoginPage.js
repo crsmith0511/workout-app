@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // import * as actions from '../actions';
 import { fetchUser } from '../actions/index';
+import { Container, Card, CardTitle, Row, Col, Button, CardHeader, CardBody, CardText} from 'reactstrap';
 
 class Login extends Component {
   async fetchUser () {
@@ -10,16 +11,23 @@ class Login extends Component {
       await this.props.fetchUser()
   }
 
-  renderPage = () => {
-    console.log('props auth from landing page: ', this.props.auth)
-    return (
-      <a onClick={fetchUser} href={'http://localhost:5000/auth/spotify'} onClick={fetchUser}>Login with Spotify</a>
-    )
-  }
+
 
   render() {
     return (
-      <div>{this.renderPage()}</div>
+      <div className="background">
+        <Container>
+          <Card style={{width: "75%", height: "20rem",  margin: "5% auto"}}>
+            <CardHeader className="cardHeader"><h1>WELCOME!</h1></CardHeader>
+            <CardBody>
+              <CardTitle><h3>Login With Spotify</h3></CardTitle>
+              <Button style={{marginTop: "30px", height: '100px', width: "75%", background: "#22212e"}} color="primary" size="lg">
+                <a style={{color: "white", font: "25px Arial, sans-serif"}} onClick={fetchUser} href={'http://localhost:5000/auth/spotify'} onClick={fetchUser}>Login</a>
+              </Button>
+            </CardBody>
+          </Card>
+        </Container>
+      </div>
     )
   }
 }
@@ -38,24 +46,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Login);
-
-// const Login = (props) => {
-//   const
-//     return (
-//       <a href={'http://localhost:5000/auth/spotify'} onClick={fetchUser}>Login with Spotify</a>
-//     )
-//   }
-
-//   function mapDispatchToProps(dispatch) {
-//     return bindActionCreators({ fetchUser }, dispatch);
-//   }
-  
-//   export default connect(
-//     null,
-//     mapDispatchToProps,
-//   )(Login);
-
-//   // export default connect(
-//   //   null,
-//   //   actions
-//   // )(Login);

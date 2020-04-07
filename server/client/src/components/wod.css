@@ -1,23 +1,43 @@
-
-
-
-
+.container{
+ background-color: #edeef5;
+}
+.background{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background-color: #edeef5;
+}
 .card {
-
     text-align: center;
+    font: Arial, sans-serif;
+    color: #22212e;
     display: block;
     width: 325px;
     align-content: center;
     margin-bottom: 0px;
-    border-radius: 0px
+    border-radius: 0px;
+    background-color: #c7d0ed;
+}
+#e1e3f0
+/* #dfdee3; 
+#080f47;
+#25397d
+*/
 
+
+.a {
+  font: 25px Arial, sans-serif;
 }
 
-/* display: inline-block;
-    /* border-radius: 25px; */
-    /* text-align: center;
-    display: inline-block; */
-    /* height: 200px; */
-    /* width: 325px;
-    align-content: center; */
-    /* margin-bottom: 30px; */
+.list-groups .listGroup{
+    background-color: #dfdee3;
+}
+
+
+
+
+
+

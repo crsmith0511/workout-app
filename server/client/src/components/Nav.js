@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 // import * as actions from '../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faChartPie} from "@fortawesome/free-solid-svg-icons";
+import { faHome, faChartPie, faDoorClosed} from "@fortawesome/free-solid-svg-icons";
 
 import './Nav.css';
 
@@ -15,7 +15,6 @@ import './Nav.css';
 //   }
 
 const Nav = () => {
-
   const handleLogoutClick = () => {
     // Logout using Google passport api
     // Set authenticated state to false in the HomePage
@@ -28,8 +27,8 @@ const Nav = () => {
         <React.Fragment>
           <li></li>
           <li><Link to="/home"><FontAwesomeIcon icon={faHome} /> Home</Link></li>
-          <li><Link to="/home"><FontAwesomeIcon icon={faChartPie}/> Activity</Link></li>
-          <li onClick={handleLogoutClick}>Sign Out</li>
+          <li style={{marginLeft: "5px"}}><Link to="/home"><FontAwesomeIcon icon={faChartPie}/> Activity</Link></li>
+          <li style={{color: "#22212e"}} onClick={handleLogoutClick}><FontAwesomeIcon icon={faDoorClosed} /> Sign Out</li>
         </React.Fragment>
 
       );
@@ -38,7 +37,7 @@ const Nav = () => {
 
   return (
     <NavContainer>
-      <NavUl>
+      <NavUl style={{marginLeft: "-3%"}}>
         {renderLinks()}
       </NavUl>
     </NavContainer>
@@ -49,9 +48,9 @@ export default Nav;
 
 
 const NavContainer = styled.div`
-  background-color: #5e5c5a;
+  background-color: #c7d0ed;
   display: block;
-  color: #283c46
+  color: #dfdee3;
   margin: 0;
   width: 100%;
   height: auto;
@@ -62,13 +61,13 @@ const NavContainer = styled.div`
     height: auto;
   }
   a {
-    color: #283c46;
+    color: #dfdee3;
   }
   width: 100%;
 `;
 
 const NavUl = styled.ul`
-  background-color: rgba(246,242,239,0.9);
+  background-color: #c7d0ed;
   display: fixed;
   flex-direction: row;
   justify-content: center;
@@ -80,7 +79,7 @@ const NavUl = styled.ul`
     padding: 20px;
   }
   li a {
-    color: #283c46;
+    color: #22212e;
   }
 `;
 

@@ -1,4 +1,3 @@
-// import "./App.css";
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { render } from "react-dom";
@@ -20,7 +19,6 @@ render(
   <Provider store={store}>
     <Router>
       <Fragment>
-        <Nav />
         <App>
           <Switch>
            <Route exact path="/" component={LandingPage} />
