@@ -27,7 +27,7 @@ const Nav = user => {
 
   return (
     <NavContainer>
-      <NavUl style={{marginLeft: "-3%"}}>
+      <NavUl style={{marginLeft: "-4%"}}>
         {renderLinks()}
       </NavUl>
     </NavContainer>
@@ -38,7 +38,7 @@ export default Nav;
 
 
 const NavContainer = styled.div`
-background-color: #d0d1db;
+background-color: #9fa6be;
   display: block;
   color: #dfdee3;
   margin: 0;
@@ -51,21 +51,19 @@ background-color: #d0d1db;
     height: auto;
   }
   a {
-    color: #dfdee3;
+    color: #22212e;
   }
   width: 100%;
 `;
 
 const NavUl = styled.ul`
-  background-color: #d0d1db;
+  background-color: ##9fa6be;
   display: fixed;
   flex-direction: row;
   justify-content: center;
   list-style: none;
   li:first-child {
     float: right;
-    margin-left: 20px;
-    color: #22212e;
   }
   li {
     padding: 20px;
@@ -75,5 +73,3 @@ const NavUl = styled.ul`
   }
 `;
 
-
-// background-color: #b7bcc7;

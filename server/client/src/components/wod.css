@@ -1,5 +1,5 @@
 .container{
- background-color: #edeef5;
+  background: #ebebed;
 }
 .background{
   position: fixed;
@@ -8,12 +8,13 @@
   bottom: 0;
   right: 0;
   overflow: auto;
-  background-color: #edeef5;
+  background: #ebebed;
 }
 .card {
     text-align: center;
     font: Arial, sans-serif;
-    color: #22212e;
+    color:  #37354a;
+    /* color: #22212e; */
     display: block;
     width: 325px;
     align-content: center;
@@ -23,6 +24,7 @@
 }
 
 /* 
+
   "#37354a"
   "#22212e"
 */

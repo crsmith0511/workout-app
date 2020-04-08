@@ -21,8 +21,8 @@ class Login extends Component {
         <Container>
           <Card style={{width: "75%", height: "20rem",  margin: "5% auto"}}>
             <CardHeader className="cardHeader"><h1>WELCOME!</h1></CardHeader>
-            <CardBody sytle={{background: "#e1e5f2"}}>
-              <CardTitle><h3>Login With Spotify</h3></CardTitle>
+            <CardBody style={{background: "#c7d0ed"}}>
+              <CardTitle style={{background: "#c7d0ed"}}><h3>Login With Spotify</h3></CardTitle>
               <Button style={{marginTop: "30px", height: '100px', width: "75%", background: "#37354a"}} color="primary" size="lg">
                 <a style={{color: "white", font: "25px Arial, sans-serif"}} onClick={fetchUser} href={'http://localhost:5000/auth/spotify'} onClick={fetchUser}>Login</a>
               </Button>

@@ -28,7 +28,7 @@ class Workout extends Component {
                 deviceId: ''
             }
         };
-        this.changeAccordionMovement = this.changeAccordionMovement.bind(this)
+        // this.changeAccordionMovement = this.changeAccordionMovement.bind(this)
         this.timer = this.timer.bind(this)
         this.handleShow = this.handleShow.bind(this)
         this.handleClose = this.handleClose.bind(this)
@@ -44,7 +44,6 @@ class Workout extends Component {
             movementTimer: this.props.workout.workout[0].movements[0].time,
             token: this.props.user[0].accessToken
         })
-         this.getNowPlaying()
     }
 
     countDown = () => {
@@ -54,9 +53,13 @@ class Workout extends Component {
                     countDownTime: this.state.countDownTime -1
                 })
             }else{
+                if(this.state.rounds === "DONE"){
+                    this.pause()
+                    this.props.history.push('/home')
+                }
                 this.timer()
-                this.changeAccordionMovement()
                 this.handleClose()
+                this.getNowPlaying()
                 this.playMusic() 
                 this.stopCountDown()
             }
@@ -68,55 +71,47 @@ class Workout extends Component {
         this.setState({countDownTime: 10})
     }
 
-    changeAccordionMovement = () => {
-        this.myInterval = setInterval(() => {
-            if(this.state.movementKeyCount < this.props.workout.workout[0].movements.length){
-              this.setState(prevState => ({
-                movementKeyCount: prevState.movementKeyCount +1
-              }))
-            }else{
-                if(this.state.round < this.props.workout.workout[0].rounds){        
-                    this.setState(prevState => ({
-                        movementKeyCount: 1,
-                        round: prevState.round +1
-                    }))
-                }else{ 
-                    this.setState({
-                        movementKeyCount: 1,
-                        round: "DONE"
-                    })
-                    this.stopAccordion()
-                    this.workoutIsComplete()
-                }
-            }
-        }, this.state.movementTimer * 1001)
-    }
-
     timer = () => {
         this.timerInterval = setInterval(() => {
-            const indexNumber = this.props.workout.workout[0].movements[this.state.movementKeyCount -1].time
-            if(this.state.movementTimer === 1){    
-                this.setState({
-                     movementTimer: indexNumber
-                })
+            const lengthMinusOne = this.props.workout.workout[0].movements.length -1
+            console.log('MKC:', this.state.movementKeyCount, 'In:', this.state.index)
+            if(this.state.movementTimer === 0){
+                if(this.state.index === lengthMinusOne){
+                    if(this.state.round === this.props.workout.workout[0].rounds){
+                        this.getNowPlaying()
+                        this.setState({
+                            movementTimer: this.props.workout.workout[0].movements[0].time,
+                            index: 0,
+                            movementKeyCount: 1,
+                            round: "DONE"
+                        })
+                        this.pauseMusic()
+                        this.stopTimer()
+                        this.props.history.push('/post-workout');
+                    }else{
+                        this.setState(prevState => ({
+                            movementTimer: this.props.workout.workout[0].movements[0].time,
+                            index: 0,
+                            movementKeyCount: 1,
+                            round: prevState.round +1
+                        }))
+                    }
+                }else{
+                    this.setState(prevState => ({
+                        index: prevState.index +1,
+                        movementTimer: this.props.workout.workout[0].movements[this.state.index].time,
+                        movementKeyCount: prevState.movementKeyCount +1
+                    }))
+                }
             }else{
-               this.setState(prevState => ({
-                      movementTimer: prevState.movementTimer  -1
-                  }))
+                this.setState(prevState => ({
+                    movementTimer: prevState.movementTimer -1
+                }))
             }
-            if(this.state.round === 'DONE'){
-                  this.setState({movementTimer: 0})
-                  this.stopTimer()
-              }
-        }, 999)
+        }, 1000)
     }
 
-    stopAccordion = () => {
-        this.pauseMusic()
-        clearInterval(this.myInterval)
-    }
     stopTimer = () => {
-        this.pauseMusic()
         clearInterval(this.timerInterval)
     }
 
@@ -127,17 +122,9 @@ class Workout extends Component {
     }
 
     pause = () => {
-        this.stopAccordion()
         this.stopTimer()
         this.pauseMusic()
         this.setState({running: false})
-    }
-
-    stopWorkout = () =>{
-        // this.stopAccordion()
-        // this.timer()
-        this.pause()
-        this.props.history.push('/home')
     }
 
     handleClose = () => {
@@ -182,13 +169,6 @@ class Workout extends Component {
 
         fetch("https://api.spotify.com/v1/me/player/play?device_id=46774e015437f413e0c92f34d8b3d30b2334ea74", {
             method: "PUT",
-            // body: {
-            //     "context_uri": "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
-            //     "offset": {
-            //       "position": 5
-            //     },
-            //     "position_ms": 0
-            //   },
             headers: {
                 "Accept": "application/json",
                 "Authorization": `Bearer ${this.state.token}` ,
@@ -270,14 +250,6 @@ class Workout extends Component {
                     </Col>
                 </Row>
             </Card.Header>
-            <Card.Body style={{height: "3rem", background: "#e1e5f2"}}>
-                    <Card.Title>
-                        <Row>
-                            <h6 style={{fontWeight: "bold", float: "left", marginLeft:"10px"}}>{this.state.nowPlaying.nowPlayingTitle}</h6>
-                            <h6 style={{color: "#808080", float: "right", marginLeft: "5px"}}>{this.state.nowPlaying.nowPlayingArtist}</h6>
-                        </Row>
-                    </Card.Title>
-            </Card.Body>
             </Card>
         )
     }
@@ -287,11 +259,12 @@ class Workout extends Component {
             return <div>Loading...</div>; 
         }
         const movements = this.props.workout.workout[0].movements
+        let indexNumber = this.state.index +1
         return _.map(movements, movement => {
             if(movement.movement === "Rest"){
               return(
                 <Card style={{width: "100%"}} key={movement._id}>
-                    <Accordion.Toggle as={Card.Header}  eventKey={movement.index} >
+                    <Accordion.Toggle as={Card.Header}  eventKey={movement.index} style={{background: `${movement.index == this.state.movementKeyCount ? "#9fa6be" : "#c7d0ed"}`}}>
                         <Row>
                            <Col xs="8">
                                 <h4 style={{textAlign: "Left", marginLeft: "5px"}}>{movement.movement}</h4>
@@ -311,7 +284,7 @@ class Workout extends Component {
             }
             return(
                 <Card style={{width: "100%"}} key={movement._id}>
-                    <Accordion.Toggle  as={Card.Header} eventKey={movement.index}>
+                    <Accordion.Toggle  as={Card.Header} eventKey={movement.index} style={{background: `${movement.index == this.state.movementKeyCount ? "#9fa6be" : "#c7d0ed"}`}}>
                         <Row>
                             <Col xs="8">
                                 <h4 style={{textAlign: "Left", marginLeft: "5px"}}>{movement.movement}</h4>
@@ -324,9 +297,9 @@ class Workout extends Component {
                     <Accordion.Collapse eventKey={movement.index}>
                     <Card.Body style={{background: "#e1e5f2"}}>
                         <Row>
-                          <Col xs="12" onClick={this.pause}>
-                          <iframe width="350" height="200" src={movement.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
-                          </iframe>
+                          <Col xs="12" style={{position: "relative", float: "left"}}>
+                              <iframe width="400" height="250" src={movement.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
+                              </iframe>
                           </Col>
                         </Row>
                         <Row>
@@ -350,11 +323,11 @@ class Workout extends Component {
               Launch demo modal
             </Button>
         
-            <Modal show={this.state.show} onHide={this.handleClose}>
-              <Modal.Header>
+            <Modal show={this.state.show}  onHide={this.handleClose}>
+              <Modal.Header style={{background: "#ebebed"}}>
                 <Modal.Title><h1 style={{textAlign: "center", color: "#080f47"}}>YOUR WORKOUT STARTS IN</h1></Modal.Title>
               </Modal.Header>
-              <Modal.Body>
+              <Modal.Body style={{background: "#ebebed"}}>
                  <h1 style={{textAlign: "center", color: "#080f47"}}>{this.state.countDownTime}</h1>
               </Modal.Body>
             </Modal>

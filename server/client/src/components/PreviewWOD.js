@@ -37,9 +37,7 @@ class PreviewWOD extends Component {
         if(this.props.workout.workout.length === 0){
             return <div>Loading...</div>
         }
-        console.log('this is length', this.props.workout.workout[0].movements.length)
         const movements = this.props.workout.workout[0].movements
-        console.log('waiting for workout', movements)
         return _.map(movements, movement => {
             if(movement.movement === "Rest"){
               return(
@@ -78,8 +76,8 @@ class PreviewWOD extends Component {
                     <Card.Body style={{background: "#e1e5f2"}}>
                         <Row>
                           <Col xs="12">
-                            <iframe width="250" height="200" src={movement.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                          <p>{movement.description}</p>
+                            <iframe width="400" height="250" src={movement.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                            <h5>{movement.description}</h5>
                           </Col>
                         </Row>
 
@@ -122,7 +120,6 @@ class PreviewWOD extends Component {
 }
 
 function mapStateToProps( state ) {
-    console.log(state)
     return{
       workout: state,
       user: state

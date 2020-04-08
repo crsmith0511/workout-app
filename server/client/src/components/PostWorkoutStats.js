@@ -26,19 +26,14 @@ class PostWOD extends Component {
     } 
 
   getSongs(){
-    const date = new Date();
-    console.log(date)
-    const now = date.getMilliseconds();
-    console.log(now)
-    let workouttimeInMilli = this.props.workout[0].time *1000
-    console.log(workouttimeInMilli)
-    let timeSinceWODStarted = now * workouttimeInMilli
-    console.log('time since', timeSinceWODStarted)
+    let date = new Date();
+    let dateInMS = date.getMilliseconds();
+    console.log(dateInMS)
 
     //when you want a live time call the fetch Url would be:
     //https://api.spotify.com/v1/me/player/recently-played?after=timeSinceWODStarted
     console.log('state in get song',this.props.user, this.props.workout)
-     fetch(`https://api.spotify.com/v1/me/player/recently-played?after=${timeSinceWODStarted}`, {
+     fetch('https://api.spotify.com/v1/me/player/recently-played?limit=1', {
         headers:{'Accept': "application/json",'Authorization': `Bearer ${this.props.user[0].accessToken}`, 
         "Content-Type": "application/json"}
         }).then(response => response.json())
@@ -61,12 +56,9 @@ class PostWOD extends Component {
   renderChart(){
     let rounds = this.props.workout[0].rounds
     let movements = this.props.workout[0].movements
-    //eventually that 4 will be rounds
-    let total = movements.length * rounds
-    // console.log('total maybe...', totalMaybe)
-    // let total = 1
+
     let dataList = [0]
-    for(let j = 0; j < total; j++){
+    for(let j = 0; j < rounds; j++){
       for(let i = 0; i < movements.length; i++){
         if(movements[i].difficulty === 'Hard'){
           dataList.push(25)
@@ -75,7 +67,7 @@ class PostWOD extends Component {
           dataList.push(15)
         }
         if(movements[i].difficulty === 'Easy'){
-            dataList.push(5)
+            dataList.push(10)
         }
       }
     }
@@ -83,11 +75,13 @@ class PostWOD extends Component {
     return(
         <Card style={{width: "100%", borderRight: "none", borderTop: "none", background: "#e1e5f2"}}> 
         <CardTitle>
-            <h1>Workout Zones</h1>
+            <h1>Workout Intensity Pattern</h1>
         </CardTitle>
-            <Sparklines data={dataList} svgHeight={120} svgWidth={1000}> 
-              {/* <SparklinesBars style={{ stroke: "white", fill: "#41c3f9", fillOpacity: ".25" }} /> */}
+            <Sparklines data={dataList} svgHeight={120} svgWidth={500}> 
+              <SparklinesBars style={{ stroke: "white", fill: "#22212e", fillOpacity: "0.25" }} />
               <SparklinesLine style={{ stroke: "#22212e", fill: "none" }} />
+              {/* <SparklinesBars style={{ stroke: "white", fill: "#41c3f9", fillOpacity: ".25" }} /> */}
+              {/* <SparklinesBars style={{ stroke: "#22212e", strokeWidth: "0"}} /> */}
             </Sparklines>
         </Card>
     )
@@ -141,7 +135,6 @@ class PostWOD extends Component {
 }
 
 function mapStateToProps( state ) {
-  console.log('state from post', state)
   return{
     workout: state.workout,
 	  user: state.user

@@ -34,7 +34,6 @@ class Home extends Component {
     this.props.fetchUser()
   }  
   categoryClick(event) {
-    console.log('state category', this.state)
     if(event === "Short"){
       this.setState({ 
         category: event, 
@@ -63,12 +62,9 @@ class Home extends Component {
       });
     }
     this.renderStartWodButton()
-    console.log('state category', this.state)
   }
 
   typeClick(event) {
-    console.log('type', event)
-    // this.setState({ type: event, typeSelected: true });
     if(event === "Body-Weight"){
       this.setState({
           type: event,
@@ -88,7 +84,6 @@ class Home extends Component {
     this.renderStartWodButton()
   }
 
-  //get workout is on the start workout button which will appear when type and category has been clicked
   getWorkout() { 
       this.setState({show: false})
       function getRandomInt(min, max) {
@@ -109,7 +104,6 @@ class Home extends Component {
   }
 
   render() {
-    const user = this.props.user
     return (
       <div className="background">
         <Nav user={this.props.user}/>
@@ -179,7 +173,6 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('Home page state: ', state)
   return ({
     user: state.user
   })

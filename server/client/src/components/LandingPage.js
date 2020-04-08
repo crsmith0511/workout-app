@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import '../landingPage.css';
 import Login from './spotifyLoginPage'
 
 
 class LandingPage extends Component {
 
   renderPage = () => {
-    console.log('props auth from landing page: ', this.props.auth)
     return (
       <div className="background">
         <Login />
