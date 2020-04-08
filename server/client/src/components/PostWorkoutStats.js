@@ -26,14 +26,16 @@ class PostWOD extends Component {
     } 
 
   getSongs(){
-    let date = new Date();
-    let dateInMS = date.getMilliseconds();
-    console.log(dateInMS)
+    let date = new Date().getTime();
+    console.log('date', date)
+    let workoutTime = this.props.workout[0].time * 1000
+    console.log("WT ", workoutTime)
+    let timeSinceWODStarted = date - workoutTime
+    console.log('tSWS: ', timeSinceWODStarted)
 
     //when you want a live time call the fetch Url would be:
     //https://api.spotify.com/v1/me/player/recently-played?after=timeSinceWODStarted
-    console.log('state in get song',this.props.user, this.props.workout)
-     fetch('https://api.spotify.com/v1/me/player/recently-played?limit=1', {
+     fetch(`https://api.spotify.com/v1/me/player/recently-played?after=${timeSinceWODStarted}`, {
         headers:{'Accept': "application/json",'Authorization': `Bearer ${this.props.user[0].accessToken}`, 
         "Content-Type": "application/json"}
         }).then(response => response.json())

@@ -197,7 +197,10 @@ class Workout extends Component {
                 "Authorization": `Bearer ${this.state.token}`
             }
         })
-        this.getNowPlaying()
+        if(!this.state.running){
+            this.pauseMusic()
+        }
+       
     }
 
     skipBackward = () =>{
@@ -208,7 +211,9 @@ class Workout extends Component {
                 "Authorization": `Bearer ${this.state.token}`
             }
         })
-        this.getNowPlaying()
+        if(!this.state.running){
+            this.pauseMusic()
+        }
     }
 
     renderPlayOrPause(){
@@ -276,7 +281,9 @@ class Workout extends Component {
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey={movement.index} >
                     <Card.Body style={{background: "#e1e5f2"}}>
-                       <Card.Title>REST BREAK</Card.Title> 
+                       <Card.Title>
+                           <h4>REST BREAK</h4>
+                        </Card.Title> 
                     </Card.Body>
                     </Accordion.Collapse>
                 </Card>

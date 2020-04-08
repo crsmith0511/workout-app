@@ -57,7 +57,7 @@ background-color: #9fa6be;
 `;
 
 const NavUl = styled.ul`
-  background-color: ##9fa6be;
+  background-color: #9fa6be;
   display: fixed;
   flex-direction: row;
   justify-content: center;
