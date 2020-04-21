@@ -35,7 +35,7 @@ class PostWOD extends Component {
 
     //when you want a live time call the fetch Url would be:
     //https://api.spotify.com/v1/me/player/recently-played?after=timeSinceWODStarted
-     fetch(`https://api.spotify.com/v1/me/player/recently-played?after=${timeSinceWODStarted}`, {
+     fetch('https://api.spotify.com/v1/me/player/recently-played?limit=1', {
         headers:{'Accept': "application/json",'Authorization': `Bearer ${this.props.user[0].accessToken}`, 
         "Content-Type": "application/json"}
         }).then(response => response.json())

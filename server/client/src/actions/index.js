@@ -16,7 +16,7 @@ export const fetchUser = () => dispatch => {
 
 export const fetchWOD = (category, type, number) => dispatch => {
     // axios.get(`${ROOT_URL}/workout?category=${category}&type=${type}&number=${number}`
-    axios.get(`${ROOT_URL}/workout?category=Short&type=Body-Weight&number=2`
+    axios.get(`${ROOT_URL}/workout?category=Short&type=Body-Weight&number=1`
     ).then(function (response) {
       dispatch({ type: FETCH_WOD, payload: response.data });
     })
